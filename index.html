@@ -43,7 +43,8 @@ Masters Thesis, July 2020 -->
   <script src="cards.js"></script>
   <script src="outcome.js"></script>
   
-  
+ 
+</script>
 </head>
 <body>
 
@@ -83,97 +84,158 @@ Masters Thesis, July 2020 -->
 
 <!-- TUTORIAL PAGE -->
 <!-- <button id="myBtn">Tutorial</button> -->
-
 <!-- The Modal -->
 <div id="myModal" class="modal">
   <!-- Modal content -->
+  
   <div class="modal-content">
     <span class="close">&times;</span>
+    
     <div class="container">
-      <h2>Visual Tutorial</h2>  
-      <div id="myCarousel" class="carousel slide" data-ride="carousel">
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
-          <!-- five steps -->
-          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-          <li data-target="#myCarousel" data-slide-to="1"></li>
-          <li data-target="#myCarousel" data-slide-to="2"></li>
-          <li data-target="#myCarousel" data-slide-to="3"></li>
-          <li data-target="#myCarousel" data-slide-to="4"></li>
-        </ol>
-    
+      <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="1000000" data-wrap="false">
         <!-- Wrapper for slides -->
-        <div class="carousel-inner" style="height: 600px;">
+        <div class="carousel-inner">
+          <!-- step 1-->
           <div class="item active">
-            <div class="gif_container" >
-              <img src="assets/gifs/Draw2Code_intro.gif" alt="intro" width="100%">
+            <!-- <embed name="GoodEnough" src="Step1.mp3" loop="false" hidden="true" autostart="true"> -->
+            <div class="carousel-canvas">
             </div>
-            <div class="instruction_container">
-              <br>
-              Step 0<br>
-              <div class="instruction">Draw2Code is a simple coding platform  for kids that emphasizes the physical experience. Print and cut out the <a href="assets/cards/draw2code_coding_cards.pdf" target="_blank" style="font-size: 30px;">cards</a> and get started.</div>         
+            <div class="container instruction">Welcome to Draw2code, an interactive programming platform that emphasizes computational thinking and artistic designing process! </div>         
+          </div>
+          <!-- step 2 -->
+          <div class="item">
+            <!-- <audio controls>
+              <source src="Step1.mp3" type="audio/mpeg"/>
+              can't play
+             </audio> -->
+            <div class="carousel-canvas">
+              <div class="triangle-left triangle-left-card"></div>
+              <img class="my_img" src="assets/tutorials/tutorial_cards.png" style="height: 400px;">
+            </div>
+            <div class="instruction">First, download the <a href='https://github.com/hyejinim/draw2code/blob/master/assets/cards/draw2code_coding_cards.pdf' target="_blank">Cards</a> to get started. You need to print and cut them out to obtain better experience</br>
+          </div>
+        </div>
+          <!-- step 3 -->
+          <div class="item">
+            <div class="carousel-canvas">
+              <div class="carousel-canvas-img"></div>
+              <img class="my_img" src="assets/tutorials/tutorial_card_categories.png" style="height:200px;width: auto;left: 200px;right: 80px;top: 200px;">
+            </div>
+            <div class="instruction"> While you are cutting, let me introduce the cards. There are three types of cards -- Sprite, Event, and Action. </br>
+          </div>
+        </div>
+          <!-- step 4 -->
+          <div class="item">
+            <div class="carousel-canvas">
+              <div class="carousel-canvas-img"></div>
+              <img class="my_img" src="assets/tutorials/tutorial_sprite.png" style="height:200px;width: auto;left: 120px;right: 80px;top: 250px;">
+            </div>
+            <div class="instruction"> The Green card is called the <b>Sprite Cards</b>. Anything you draw on the Sprite card will be displayed on screen</br>
             </div>
           </div>
-    
+          <!-- step 5 -->
           <div class="item">
-            <div class="gif_container" >
-              <img src="assets/gifs/Draw2Code_step1_thinking.gif" alt="intro" width="100%">
+            <div class="carousel-canvas">
+              <div class="carousel-canvas-img"></div>
+              <img class="my_img" src="assets/tutorials/tutorial_action.png" style="height:200px;width: auto;left: 180px;right: 80px;top: 250px;">
             </div>
-            <div class="instruction_container">
-              <br>
-              Step 1<br>
-              <div class="instruction">Come up with an idea</div>
-            </div>
-          </div>
-        
-          <div class="item">
-            <div class="gif_container" >
-              <img src="assets/gifs/Draw2Code_step2_make.gif" alt="intro" width="100%">
-            </div>
-            <div class="instruction_container">
-              <br>
-              Step 2<br>
-              <div class="instruction"> <b>Play around with the paper blocks</b> <br> - Doodle a character <br> - pick a trigger <br> - program the moves
+            <div class="instruction">Now that you have your sprite, how do you make it move? All we need is the black <b>Action Card</b> Think of that as a frame, and you can draw a series individual motions that animate your sprite. </br> 
               </div>
+          </div>
+          <!-- step 6 -->
+          <div class="item">
+            <div class="carousel-canvas">
+              <div class="carousel-canvas-img"></div>
+              <img class="my_img" src="assets/tutorials/tutorial_action_2.png" style="height:400px;width: auto;left: 100px;top: 100px;">
+            </div>
+            <div class="instruction">With the action card, you can program <b>how big</b> your sprite will be, <b>where</b> it will appear, and the <b>path</b> it will move along on the screen!</br>
             </div>
           </div>
-  
+          <!-- step 7 -->
           <div class="item">
-            <div class="gif_container" >
-              <img src="assets/gifs/Draw2Code_step3_scan.gif" alt="intro" width="100%">
+            <div class="carousel-canvas">
+              <div class="carousel-canvas-img"></div>
+              <img class="my_img" src="assets/tutorials/tutorial_action_middle.png" style="height:300px;width: auto;left: 200px;right: 80px;top: 130px;">
             </div>
-            <div class="instruction_container">
-              <br>
-              Step 3 <br>
-              <div class="instruction"> <b> Scan, organize, and check </b> <br> - toss away the wrong blocks <br> - check the sequence </div>
+            <div class="instruction">The idea is <b>“What you draw is what you see”</b>! Think about which pixels do you need to color if you want the character to appear <b>in the middle</b> of the screen.</br>
             </div>
           </div>
-  
+          <!-- step 8 -->
           <div class="item">
-            <div class="gif_container" >
-              <img src="assets/gifs/Draw2Code_step4_interact.gif" alt="intro" width="100%">
+            <div class="carousel-canvas">
+              <div class="carousel-canvas-img"></div>
+              <img class="my_img" src="assets/tutorials/tutorial_action_twice_as_big.png" style="height:300px;width: auto;left: 200px;right: 80px;top: 130px;">
             </div>
-            <div class="instruction_container">
-              <br>
-              Step 4<br>
-              <div class="instruction">Click <b>"Run"</b> and <b>interact</b> with your program</div>
+            <div class="instruction">What if you want the sprite to appear <b>twice as big</b>?</br>
+            </div> 
+          </div>
+          <!-- step 9 -->
+          <div class="item">
+            <div class="carousel-canvas">
+              <div class="carousel-canvas-img"></div>
+              <img class="my_img" src="assets/tutorials/tutorial_action_twin.png" style="height:300px;width: auto;left: 200px;right: 80px;top: 130px;">
+            </div>
+            <div class="instruction">Or if you want your character to <b>have a twin</b>? </br>
+             
+            </div>
+          </div>
+          <!-- step 10 -->
+          <div class="item">
+            <div class="carousel-canvas">
+            </div>
+            <div class="instruction">So now we have our character and its motion programmed. Let’s use the <b>Event 
+              Card</b> to prompt the Sprite when to move! </br>
+              </div>
+          </div>
+          <!-- step 11 -->
+          <div class="item">
+            <div class="carousel-canvas">
+              <div class="carousel-canvas-img"></div>
+              <img class="my_img" src="assets/tutorials/tutorial_event_V.png" style="height:300px;width: auto;left: 225px;right: 80px;top: 150px;">
+            </div>
+            <div class="instruction">The cool thing about the Event Card is that it allows you to interact with the 
+              propram. Say I selected the V-sign Event, what should I do in order to make my Sprite move?  
+            </br>
+            </div>
+            </div>
+
+          <!-- step 12 -->
+          <div class="item">
+            <div class="carousel-canvas">
+              <div class="triangle-left triangle-left-card"></div>
+              <div class="triangle-left triangle-left-sparks"></div>
+            </div>
+            <div class="instruction">Ok, enough about the <b>cards</b>! But feel free to reference to Card button for more details. For inspirations, click <b>sparks</b> to see what other people use Draw2code to create! 
+            </br>
+           </div>
+          </div>
+          <!-- step 12 -->
+          <div class="item">
+            <div class="carousel-canvas">
+              <div class="triangle-right triangle-right-run"></div>
+              <div class="triangle-right triangle-right-confirm"></div>
+              <div class="triangle-right triangle-right-scan"></div>
+            </div>
+            <div class="instruction">Start to play around with your cards now. When you done programming, don’t forget to test out your program by clicking <b>scan</b>, <b>confirm</b> and <b>run</b>! <br/>
+            <button class="tutorial-button" onclick="closeTutorial()" style="margin-left:1000px;">PLAY</button>
             </div>
           </div>
         </div>
-    
-        <!-- Left and right controls -->
-        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-          <span class="glyphicon glyphicon-chevron-left"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control" href="#myCarousel" data-slide="next">
-          <span class="glyphicon glyphicon-chevron-right"></span>
-          <span class="sr-only">Next</span>
-        </a>
       </div>
+
+      <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span class="sr-only">Next</span>
+    </a>
     </div>
+    
   </div>
-</div>
+</div> 
 
   <script src="tutorial-modal.js"></script>
 

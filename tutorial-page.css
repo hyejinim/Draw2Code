@@ -1,67 +1,173 @@
+b {
+  font-weight: bold;
+  color:white;
+  text-decoration: lightcoral;
+}
+
 .modal {
+    font-size: 50pt;
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
-    padding-top: 2%; /* Location of the box */
     left: 0;
-    top: 0;
+    bottom: 0;
     width: 100%; /* Full width */
     height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
+    /* overflow: auto; Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
   }
   
+   /* Modal Canvas */
+   /* .modal-canvas{
+    width: 200px;
+    height: 900px;
+    /* object-position: 5px 10%;
+    border: 5px solid red; 
+  } */
+
   /* Modal Content */
   .modal-content {
-    background-color: #fefefe;
-    margin: 5%;
-    border: 1px solid #888;
-    width: 90%;
-  
+    background-color: rgba(0,0,0,0);
+    /* background-color: #fefefe; */
+    bottom:0;
+    left:0;
+    right:0;
+    height: 100%;
+  }
+
+
+  .carousel-inner{
+    width:100%;
   }
   
+  .item{
+    /* background-color: brown; */
+    text-align: center;
+    vertical-align: middle;
+    position: relative;
+  }
+/* instructions and canvas would be placed in the item */
+
+  .carousel-canvas{
+    width: 100%;
+    height: 600px;
+    background-color: rgba(0, 0, 0, 0);  
+  }
+
+  .triangle-left {
+    width: 0;
+    height: 0;
+    border-top: 25px solid transparent;
+    border-right: 50px solid #6EEB83;
+    border-bottom: 25px solid transparent;
+  }
+
+  .triangle-right {
+    width: 0;
+    height: 0;
+    border-top: 25px solid transparent;
+    border-left: 50px solid #6EEB83;
+    border-bottom: 25px solid transparent;
+  }
+
+  .triangle-left-card{
+    position: relative;
+    left: 30px;
+    top:80px;
+  }
+
+  .triangle-left-sparks{
+    position: relative;
+    left: 50px;
+    top: 90px;
+  }
+
+  .triangle-right-run {
+    position: relative;
+    left: 1080px;
+    right: 0px;
+    top:30px;
+  }
+
+  .triangle-right-confirm {
+    position: relative;
+    left: 1080px;
+    right: 0px;
+    top: 220px;
+  }
+  
+  .triangle-right-scan {
+    position: relative;
+    left: 350px;
+    top:200px;
+  }
+  .carousel-canvas-img{
+    height: 400px;
+    width: 85%;
+    background-color: #F7EDE2;
+    position: relative;
+    left: 80px;
+    right: 80px;
+    top: 100px;
+  }
+
+  .my_img{
+    /* z-index: 5; */
+    height:400px;
+    width: 85%;
+    left: 80px;
+    right: 80px;
+    top: 100px;
+    position: absolute;;
+  }
+
+  .instruction{
+    background-color: rgb(29, 29, 29);
+    padding: 2%;
+    height: 150px;
+    width: 100%;
+    color: gray;
+    text-align: left;
+    font-size: 18px;
+    display: relative;
+  }
+  
+
+
+
   /* The Close Button */
   .close {
-    color: #aaaaaa;
+    color: #111111;
     float: right;
     font-size: 28px;
     font-weight: bold;
-  }
+    margin: 2%;
+  } 
   
   .close:hover,
   .close:focus {
     color: #000;
     text-decoration: none;
     cursor: pointer;
+    margin:2%;
+  } 
+
+/* The scroll Button */
+  .carousel-control{
+    width: 5%;
+    bottom:50px;
+    top: auto;
   }
 
-  .carousel-inner{
-    height: 600px;
-    width:100%;
-    margin-bottom: 5%;
-  }
-  .item{
-    text-align: center;
-    vertical-align: middle;
-  }
-
-  .gif_container{
+  .tutorial-button{
+    display: absolute;
+    top:100px;
+    left: 500px;
     display: inline-block;
-    width: 50%;
-    margin-right: 5%
-  }
-  .instruction_container{
-    width:40%;
-    display: inline-block;
-    font-family:'Courier New', Courier, monospace;
-    font-size: 50px;
-    font-weight: bold;
-    /* margin-left: 7%; */
-  }
-
-  .instruction{
-    color: gray;
-    text-align: left;
-    font-size: 30px;
+    font-size: 16px;
+    padding: 4px 8px;
+    margin-left:1000px;
+    margin-bottom:50px;
+    /* margin-top: 50px; */
   }

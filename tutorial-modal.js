@@ -11,6 +11,9 @@ function openTutorial() {
   modal.style.display = "block";
 }
 
+function closeTutorial(){
+  modal.style.display = "none";
+}
 // When the user clicks the button, open the modal 
 // btn.onclick = function() {
 //   modal.style.display = "block";

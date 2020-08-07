@@ -11,7 +11,9 @@
 //     // you're in LANDSCAPE mode
 // }
 
-// the video
+
+// the video 
+// ** ISSUE: if user resize the screen, the size of components won't change
 let capture;
 let w = window.innerWidth;
     h = window.innerHeight;
@@ -122,12 +124,19 @@ function setup(){
     buttonPlay = createButton('Tutorial');
     buttonPlay.id('tutorialBtn');
     buttonPlay.position(10, 10);
+    // buttonPlay.mousePressed(step5);
     buttonPlay.mousePressed(openTutorial);
 
-    buttonPlay = createButton('Card');
-    buttonPlay.id('CardBtn');
-    buttonPlay.position(20, 20);
-    // buttonPlay.mousePressed(DownloadCard);
+    // working versions
+    buttonRES = createButton('Card');
+    buttonRES.id('CardBtn');	    
+    buttonRES.position(10, 70);
+    buttonRES.mousePressed(linkCards);
+
+    buttonRES = createButton('Sparks');
+    buttonRES.id('SparkBtn');
+    buttonRES.position(10, 130);
+    buttonRES.mousePressed(linkSparks);
 
     // buttonStop = createButton('Stop');
     // buttonStop.position(10, 145);
@@ -142,6 +151,8 @@ function setup(){
 function stop() {
     play = false;
 }
+
+
 
 // function createTarget() {
 //     // create an object and save it to an array

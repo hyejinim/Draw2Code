@@ -198,14 +198,31 @@ function drawAnimation() {
     }
 }
 
+
 function showButtons() {
     if (scan) {
         document.getElementById("playBtn").style.display = "block";
         document.getElementById("addBtn").style.display = "block";
         document.getElementById("tutorialBtn").style.display = "block";
+        // document.getElementById("CardBtn").style.display = "block";
+        // document.getElementById("SparkBtn").style.display = "block";
     } else if (play) {
         document.getElementById("playBtn").style.display = "none";
         document.getElementById("addBtn").style.display = "none";
         document.getElementById("tutorialBtn").style.display = "none";
+        // document.getElementById("CardBtn").style.display = "none";
+        // document.getElementById("SparkBtn").style.display = "none";
     }
 }
+
+// NOTE: use download page in github for now, can update it as a individual page in the future 
+function linkCards(){
+    window.open('https://github.com/hyejinim/draw2code/blob/master/assets/cards/draw2code_coding_cards.pdf', '_blank');
+}
+
+
+// NOTE: use google doc's link for now, can update it as a individual page in the future 
+function linkSparks(){
+    window.open('https://docs.google.com/document/d/1bHBShg13TFhTErruXkIbynvSGfJyzOdNG26JPrGvIqY/edit?usp=sharing', '_blank');
+}
+
