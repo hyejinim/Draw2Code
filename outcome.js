@@ -1,211 +1,183 @@
 let frame = 0;
 let index = 0;
 let spirit;
+let codeBarHeight = 120;
+let cleanCode = false;
+
+// authoring
+let sprites = [];
+let frames = [];
+let sprite1;
+let img;
+let frameNum = 0;
 
 function draw() {
-    if (scan) {
-        // draw the video
-        // imageMode(CENTER);
+  background(238, 238, 238);
 
-        //move image by the width of image to the left
-        // translate(capture.width, 0);
-        //then scale it by -1 in the x-axis
-        //to flip the image
-        // scale(-1, 1);
-        image(capture, w/2, (h-120)/2, 350, 350);
+  // draw the video
+  imageMode(CENTER);
 
-        // draw the label
-        drawCard();
-        drawBottomBar();
-        drawCode();
+  push(); // save the style settings
 
-        drawGrid();
-    }   
-    else if (play) {
-        // draw the video in full screen size
-        imageMode(CORNER);
+  // flip the video if it runs on desktop or uses the front camera on mobile
+  if (!mobile || switchFlag) {
+    translate(width, 0);
+    scale(-1, 1);
+  }
 
-        image(capture, 0, 0, w, h);
-
-        frameRate(6);
-        let x, y, height, width;
-        if (behavior.length > index) {
-            noStroke();
-            x = behavior[index].info.x;
-            y = behavior[index].info.y;
-            height = behavior[index].info.height;
-            width = behavior[index].info.width;
-        }
-
-        image(snapshots[0], x, y, width, height);
-        index += 1;
-
-        // for (let i = 0; i < snapshots.length; i++) {
-        //     for (let j = 0; j < behavior.length; j++) {
-        //         if (behavior[j].info.x) {
-        //         noStroke();
-        //         let x = behavior[j].info.x;
-        //         let y = behavior[j].info.y;
-        //         let height = behavior[j].info.height;
-        //         let width = behavior[j].info.width;
-        //         image(snapshots[i], x, y, width, height); // make them repeat 
-        //         // j = (index + 1) % snapshots.length; 
-                
-        //         }
-        //     }
-        // }
-    }
-    // take snap
-    // if(document.getElementById('snap').clicked == true) {
-    //     takesnap();
-    // }
-    showButtons();
+  if (scan) {
+    image(capture, windowW / 2, (windowH - codeBarHeight) / 2, w, h); // resize needed on mobile screen
+    drawBottomBar();
+  } 
+  else if (run) {
+    // draw the video in full screen size
+    image(capture, windowW / 2, (windowH - codeBarHeight) / 2, windowW, windowH);
     
-}
-  
-function switchMode() {
-    play = true;
-    scan = false;
-    modelURL = 'https://teachablemachine.withgoogle.com/models/VOgRsStGF/'; // rock scissors paper
-
-    // create an animation
-    // sprit = loadAnimation
-}
-
-function drawCard() {
-    if (label == "waiting...") {
-        textSize(32);
-        textAlign(CENTER, CENTER);
-        noStroke();
-        fill(0);
-        textFont('Work Sans');
-        text(label, w/2, 30);
-    } 
-
-    imageMode(CENTER);
-    let card = "";
-    let cardW = 0;
-    let cardH = 0;
-    if (label == "Resource") {
-        card = Resource;
-        cardW = 340;
-        cardH = 250;
-        cardName = "Sprite";
-    } else if (label == "Trigger_Run") {
-        card = Trigger_Run;
-        cardW = 300;
-        cardH = 250;
-        cardName = "Event";
-    } else if (label == "Trigger_Scissors") {
-        card = Trigger_Scissors;
-        cardW = 300;
-        cardH = 250;
-        cardName = "Event";
-    } else if (label == "Behavior" && detected == 2) {
-        card = Behavior;
-        cardW = 360;
-        cardH = 200;
-        cardName = "Action";
+    if (cleanCode) {
+      drawSprites();
+      if (frameNum < frames.length) {
+        if (frameCount % 20 == 0) { // update every 20 frames
+          spr.position.x = frames[frameNum].x;
+          spr.position.y = frames[frameNum].y;
+          spr.scale = frames[frameNum].scale;
+          frameNum++;
+        }
+      }
     }
+  }
 
-    // Draw the card
-    if (card) {
-        image(card, w/2, (h-120)/2, cardW, cardH);
-        
-        // Draw the card name
-        textSize(32);
-        textAlign(CENTER, CENTER);
-        noStroke();
-        fill(0);
-        textFont('Work Sans');
-        text(cardName, w/2, 30);
-    }
+  pop(); // restore the settings so the label is not flipped
+
+  if (pause) {
+    filter(GRAY); // if you hit the switchBtn, it should be not applied
+  }
+  drawCodingBlock();
+  drawCode();
+  // detectActionCard();
+}
+
+// draw the classification and image of coding block
+function drawCodingBlock() {
+  let card = "";
+  let cardW = 0;
+  let cardH = 0;
+
+  imageMode(CENTER);
+  textSize(22);
+  textAlign(CENTER, CENTER);
+  noStroke();
+  fill(0);
+  textFont('Work Sans');
+
+  if (label == "waiting...") {
+    text(label, windowW / 2, 30);
+  } else if (label == "None") {
+    text("Scan your code", windowW / 2, 30);
+  } else if (label == "Resource") {
+    card = Spirit;
+    cardW = 340;
+    cardH = 250;
+    cardName = "Sprite";
+  } else if (label == "Trigger_Run") {
+    card = Event_Run;
+    cardW = 300;
+    cardH = 250;
+    cardName = "Run";
+  } else if (label == "Trigger_Scissors") {
+    card = Event_Scissors;
+    cardW = 300;
+    cardH = 250;
+    cardName = "Scissors";
+  } else if (label == "Behavior") {
+    card = Action;
+    cardW = 360;
+    cardH = 200;
+    cardName = "Action";
+  }
+
+  if (card) {
+    tint(255, 200); // modify alpha value
+    image(card, windowW / 2, (windowH - codeBarHeight) / 2, cardW, cardH);
+    tint(255, 255);
+    text(cardName, windowW / 2, 15);
+  }
 }
 
 function drawBottomBar() {
-    noStroke();
-    fill("#fff");
-    rect(0, h-120, w, 120);
+  noStroke();
+  fill("#fff");
+  rect(0, windowH - codeBarHeight, windowW, codeBarHeight + 100);
 }
 
-function getTxt(value, index) {
-    // draw coding cards that are scanned
-    txt = txt + value + "  +  ";  // show the code on the bottom bar
+
+
+function scanCard() {
+  let code;
+  let drawing;
+  let frame;
+
+  if (label != "None" && label != "Undefined" && label != "waiting...") {
+
+    if (label == "Resource") {
+      // save the image within the boundary
+      drawing = takeSnap(windowW / 2 - 68, (windowH - codeBarHeight) / 2 - 90, 180, 180);
+      console.log(drawing);
+    } else if (label == "Behavior") {
+      drawing = takeSnap(windowW / 2 - 130, (windowH - codeBarHeight) / 2 - 70, 220, 130);
+      // create Frame objects
+      frame = new Frame(200, 200, 0.3); // x, y, scale
+      frames.push(frame);
+    } else {
+      drawing = '';
+    }
+    code = new Code(label, drawing);
+    codes.push(code);
+    console.log(code);
+  }
+}
+
+function takeSnap(x, y, w, h) {
+  return get(x, y, w, h); // grab pixel from the image itself
 }
 
 function drawCode() {
-    let item = '';
-    let itemX = 80;
-    let itemW = 0;
-    let itemGap = 0;
-    let drawing;
+  let item = '';
+  let itemX = 50;
+  let itemY = windowH - codeBarHeight + 35;
+  let itemW = 0;
+  let itemGap = 0;
+  let doodle = '';
 
-    for (let i = 0; i < code.length; i++) {
-        item = code[i];
+  for (let i = 0; i < codes.length; i++) {
+    item = codes[i].codingBlockName;
+    doodle = codes[i].drawing;
 
-        if (item == "Resource") {
-            item = Resource;
-            itemW = 145;
-            itemGap = itemW - 20;
-            drawing = snapshots[i]; // need to be updated later
-            image(drawing, itemX+10, h-60, 75, 75);
-        } else if (item == "Trigger_Run") {
-            item = Trigger_Run;
-            itemW = 120;
-            itemGap = itemW + 15;
-        } else if (item == "Trigger_Scissors") {
-            item = Trigger_Scissors;
-            itemW = 175;
-            itemGap = itemW + 15;
-        } else if (item == "Behavior") {
-            item = Behavior;
-            itemW = 175;
-            itemGap = itemW - 12;
-        }
-
-        image(item, itemX, h-60, itemW, 100);
-        itemX = itemX + itemGap;
+    if (item == "Resource") {
+      item = Spirit;
+      itemW = 90;
+      itemGap = itemW - 13;
+      image(doodle, itemX + 6, itemY, 52, 52);
+    } else if (item == "Trigger_Run") {
+      item = Event_Run;
+      itemW = 75;
+      itemGap = itemW + 15;
+    } else if (item == "Trigger_Scissors") {
+      item = Event_Scissors;
+      itemW = 75;
+      itemGap = itemW + 15;
+    } else if (item == "Behavior") {
+      item = Action;
+      itemW = 120;
+      itemGap = itemW - 8;
+      image(doodle, itemX - 5, itemY - 2, 80, 42);
     }
-}
 
-function addCard() {
-    if (label != "None" && label != "Undefined" && label != "waiting...") {
-        code.push(label);
-
-        if (label == "Resource") {
-            // when the capture button is pressed, save the image data within the boundary
-            takeSnap();
-        }
-
-        if (label == "Behavior") {
-            let info = {x: imageX, y: imageY, width: imageWidth, height: imageHeight};
-            behavior.push({info: info});
-        }
+    image(item, itemX, itemY, itemW, 65);
+    if (itemX > windowW - 50) {
+      itemX = 50;
+      itemY = itemY + 75;
     }
+    itemX = itemX + itemGap;
+  }
 }
 
-function takeSnap() {
-    snapshots.push(get((w/2)-70, (h-120)/2-100, 190, 190)); // grabbing pixel from the image itself
-}
-
-function drawAnimation() {
-    for (let i = 0; i < snapshots.length; i++) {
-        let w1 = 80;
-        let h1 = 60;
-        let x1 = 0;
-        let y1 = 0;
-        image(snapshots[i], 0, 0);
-    }
-}
-
-function showButtons() {
-    if (scan) {
-        document.getElementById("playBtn").style.display = "block";
-        document.getElementById("addBtn").style.display = "block";
-        document.getElementById("tutorialBtn").style.display = "block";
-    } else if (play) {
-        document.getElementById("playBtn").style.display = "none";
-        document.getElementById("addBtn").style.display = "none";
-        document.getElementById("tutorialBtn").style.display = "none";
-    }
-}

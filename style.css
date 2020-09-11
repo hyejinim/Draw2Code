@@ -53,17 +53,25 @@ video {
     top: 0;
     left: 0;
 }
-
+/* 
 button {
     font-family: 'Work Sans', sans-serif;
     background-color: #fff;
     color: #000;
-    margin: 1em;
-    padding: 1em 2em 1em 2em;
+    margin: 2em;
+    padding: 1em 1em 1em 1em;
     font-weight: 500;
     border-radius: 10px;
     border: 1px solid #d4d4d4;
-    
+} */
+
+#scanBtn {
+    font-family: 'Work Sans';
+    font-size: 18px;
+    background-color: #ff41bf;
+    color: white;
+    padding: 1.6em 1em 1.6em 1em;
+    border-radius: 50%;
 }
 
 #tutorialBtn {

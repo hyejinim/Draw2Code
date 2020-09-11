@@ -1,145 +1,236 @@
-// detect HTTP or HTTPS then force HTTPS
-// if (location.protocol != 'https:') {
-//     location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
-// }
-
-// if (window.matchMedia("(orientation: portrait)").matches) {
-//     // you're in PORTRAIT mode
-//  }
- 
-//  if (window.matchMedia("(orientation: landscape)").matches) {
-//     // you're in LANDSCAPE mode
-// }
-
-// the video
+// video
 let capture;
-let w = window.innerWidth;
-    h = window.innerHeight;
+let w = 380;
+let h = 280;
+let windowW = window.innerWidth;
+let windowH = window.innerHeight;
 
-// display the label
+// to store the classification
 let label = 'waiting...';
-let button;
 
-let play = false;
+// status
+let run = false;
 let scan = true;
+let pause = false;
+let switchFlag = false;
+let modeRun = false;
+let mobile;
 
-// display the code scanned
-let code = [];
-let txt = '';
-let behavior = [];
-let snapshots = [];
-let targets = [];
+// code arrays
+let codes = [];
+let spirits = [];
+let actions = [];
 
 // card images
 let Resource;
 let Trigger_Run;
 let Trigger_Scissors;
-let duck;
+let Behavior;
 
-function setup(){
-    // setup() waits until preload() is done
+// buttons
+let switchBtn;
+let scanBtn;
+let runBtn;
 
-    // Load the image
-    // Resource = loadImage('assets/cards/Resource.png');
-    // Trigger_Run = loadImage('assets/cards/Trigger_Play.png');
-    // Trigger_Scissors = loadImage('assets/cards/Trigger_Scissors.png');
-    // Behavior = loadImage('assets/cards/Action.png')
-    // duck = loadImage('assets/images/duck.png'); 
+// classifier
+let classifier;
+let modelURL = 'https://teachablemachine.withgoogle.com/models/0tuGHNcv5/';
 
+// switch camera
+let options = {
+  video: {
+    facingMode: {
+      exact: "user"
+    }
+  }
+};
+
+// load the model and images
+function preload() {
+  classifier = ml5.imageClassifier(modelURL + 'model.json');
+
+  Spirit = loadImage('assets/cards/Spirit.png');
+  Event_Run = loadImage('assets/cards/Event_Run.png');
+  Event_Scissors = loadImage('assets/cards/Event_Scissors.png');
+  Action = loadImage('assets/cards/Action.png')
+}
+
+function setup() {
+  pixelDensity(1);
+
+  // detect device
+  mobile = isMobileDevice();
+  console.log('this is mobile device: ' + mobile);
+
+  if (scan) {
     // create canvas
-    pixelDensity(1); // this makes the internal p5 canvas smaller
-    if (scan) {
-        capture = createCapture({
-            audio: false,
-            video: {
-                width: 350,
-                height: 350
-            }
-        }, function() {
-            console.log('capture ready.')
-        });
+    capture = createCapture({
+      audio: false,
+      video: {
+        width: windowW,
+        height: windowH
+      }
+    }, function() {
+      console.log('capture ready.')
+    });
 
-        // capture = capture.get(w/2, (h-120)/2, 350, 350);        
-        capture.elt.setAttribute('playsinline', '');
-        createCanvas(w, h);
-        capture.size(350, 350);
-        capture.parent('container');
-        cnv = createCanvas(w, h);
-        cnv.parent('container');
-        capture.position(w/2, (h-120)/2);
-        capture.style('opacity',0); // use this to hide the capture later on (change to 0 to hide)...
-        // capture.hide(); // tracking.js can't track the video when it's hidden
-        // drawBottomBar();
+    if (mobile) {
+      capture = {
+        video: {
+          facingMode: {
+            exact: "environment"
+          },
+          width: windowW,
+          height: windowH
+        }
+      };
+      capture = createCapture(capture);
     }
 
-        
-    // } else if (play) {
-    //     capture = createCapture({
-    //         audio: false,
-    //         video: {
-    //             width: w,
-    //             height: h
-    //         }
-    //     }, function() {
-    //         console.log('capture ready.')
-    //     });
-        
-    //     capture.elt.setAttribute('playsinline', '');
-    //     createCanvas(w, h);
-    //     capture.size(w, h);
-    //     capture.parent('container');
-    //     cnv = createCanvas(w, h);
-    //     cnv.parent('container');
-    //     capture.position(w, h);
-    //     capture.style('opacity',0)// use this to hide the capture later on (change to 0 to hide)...
-    //     // capture.hide(); // tracking.js can't track the video when it's hidden 
 
-        
-    // }
+    capture.elt.setAttribute('playsinline', '');
+    // capture.hide();
+    capture.size(w, h);
+    capture.parent('container');
+    cnv = createCanvas(windowW, windowH + 100);
+    cnv.parent('container');
+    capture.position(0, 0);
+    capture.style('opacity', 0); // hide capture
 
-    // detect the grid card and the drawn
-    detectGrid();
-    // start classifying for other coding cards
+    // classify coding blocks
     classifyCapture();
 
-    //   button = createButton('Show Outcome');
-    //   button.position(600, 65);
-    //   button.mousePressed(showImage);
-    // button = createButton('snap');
-    // button.mousePressed(takesnap);
+    // detect markers on the action block
+    // detectMarkers();
 
-    buttonAdd = createButton('Add');
-    buttonAdd.id('addBtn');
-    buttonAdd.position(w-115, (h-120)/2-55);
-    buttonAdd.mousePressed(addCard);
-    
-    buttonPlay = createButton('Play');
-    buttonPlay.id('playBtn');
-    buttonPlay.position(w-115, 10);
-    buttonPlay.mousePressed(switchMode);
+    // add buttons
+    if (mobile) {
+      switchBtn = createButton('Switch Camera');
+      switchBtn.id('switchBtn');
+      switchBtn.position(19, 19);
+      switchBtn.mousePressed(switchCamera);
+    }
 
-    buttonPlay = createButton('Tutorial');
-    buttonPlay.id('tutorialBtn');
-    buttonPlay.position(10, 10);
-    buttonPlay.mousePressed(openTutorial);
+    pauseBtn = createButton('Pause');
+    pauseBtn.id('pauseBtn');
+    pauseBtn.position(19, 49);
+    pauseBtn.mousePressed(pauseCapture);
 
-    // buttonStop = createButton('Stop');
-    // buttonStop.position(10, 145);
-    // buttonStop.mousePressed(stop);
+    scanBtn = createButton('Scan');
+    scanBtn.id('scanBtn');
+    scanBtn.position(windowW - 100, (windowH - codeBarHeight) / 2 - 40);
+    scanBtn.mousePressed(scanCard);
 
-    // duck = loadImage('assets/images/duck.png');
 
-    
-    // target = loadImage('assets/cards/Resource.png');
+    runBtn = createButton('Run');
+    runBtn.id('runBtn'); 
+    runBtn.position(19, 79);
+    runBtn.mousePressed(switchMode);
+
+    //     tutorialBtn = createButton('Tutorial');
+    //     tutorialBtn.id('tutorialBtn');
+    //     tutorialBtn.position(10, 10);
+    //     tutorialBtn.mousePressed(openTutorial);
+
+  } 
 }
 
-function stop() {
-    play = false;
+function switchCamera() {
+  console.log('switchBtn clicked ' + switchFlag);
+  switchFlag = !switchFlag;
+  stopCapture();
+  if (switchFlag) {
+    capture.remove();
+    options = {
+      video: {
+        facingMode: {
+          exact: "user"
+        },
+        width: w,
+        height: h
+      }
+    };
+  } else {
+    capture.remove();
+    options = {
+      video: {
+        facingMode: {
+          exact: "environment"
+        },
+        width: w,
+        height: h
+      }
+    };
+  }
+  capture = createCapture(options);
+
+  // classify coding blocks
+  classifyCapture();
 }
 
-// function createTarget() {
-//     // create an object and save it to an array
-//     let t = new Target(imageX, imageY, snapshots[snapshots.length-1]); // the last item in the takesnaps array
-//     targets.push(t);
-//     console.log('saved' + targets);
-// }
+function stopCapture() {
+  if (this instanceof p5.MediaElement) {
+    let stream = this.elt.srcObject;
+    let tracks = stream.getTracks();
+
+    tracks.forEach(function(track) {
+      track.stop();
+    });
+
+    this.elt.srcObject = null;
+  }
+}
+
+function isMobileDevice() {
+  return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+}
+
+function pauseCapture() {
+  pause = !pause;
+  if (pause) {
+    capture.pause();
+  } else {
+    capture.play();
+  }
+}
+
+function classifyCapture() {
+  // let roi = get((windowW/2)-250/2, (windowH-codeBarHeight)/2-250/2, 250, 250);
+  classifier.classify(capture, gotResults);
+}
+
+// get the classification
+function gotResults(error, results) {
+  // Something went wrong!
+  if (error) {
+    console.error(error);
+    return;
+  }
+  // Store the label and classify again!
+  label = results[0].label;
+  classifyCapture();
+}
+
+function switchMode() {
+  modeRun = !modeRun;
+  if (modeRun) {
+    run = true;
+    scan = false;
+    modelURL = 'https://teachablemachine.withgoogle.com/models/VOgRsStGF/'; // rock scissors paper
+  } else {
+    scan = true;
+    run = false;    
+  }
+}
+
+// objects
+function Code(codingBlockName, drawing) {
+    this.codingBlockName = codingBlockName;
+    this.drawing = drawing;
+}
+
+function Frame(x, y, scale) {
+  this.x = x;
+  this.y = y;
+  this.scale = scale;
+}
