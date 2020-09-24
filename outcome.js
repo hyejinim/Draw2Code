@@ -11,16 +11,20 @@ let sprite1;
 let img;
 let frameNum = 0;
 
+let ww, wh, wx, wy; // white blob
+let bw, bh, bx, by; // blue blob
+let rectColor;
+
 function draw() {
   background(238, 238, 238);
 
   // draw the video
   imageMode(CENTER);
 
-  push(); // save the style settings
-
   // flip the video if it runs on desktop or uses the front camera on mobile
-  if (!mobile || switchFlag) {
+  push();  // save the style settings
+
+  if (!mobile || switchFlag) {  
     translate(width, 0);
     scale(-1, 1);
   }
@@ -28,6 +32,53 @@ function draw() {
   if (scan) {
     image(capture, windowW / 2, (windowH - codeBarHeight) / 2, w, h); // resize needed on mobile screen
     drawBottomBar();
+    text("# of blobs: " , 0, 0);
+
+    if (trackingData) { //if there is tracking data to look at, then...
+      for (var i = 0; i < trackingData.length; i++) { //loop through each of the detected colors    
+  
+        // push();
+        noStroke();
+        fill(0);
+        // text("# of blobs: " + trackingData.length, 0, 0);
+  
+        if (trackingData[i].color == 'white') {
+  
+          // text("white blob: (" + trackingData[i].x + ", " + trackingData[i].y + ", " + trackingData[i].width + ", " + trackingData[i].height + ")", 10, 450);
+          ww = trackingData[i].width;
+          wh = trackingData[i].height;
+          wx = trackingData[i].x;
+          wy = trackingData[i].y;
+  
+        } else if (trackingData[i].color == 'blue') {
+          // text("blue blob: (" + trackingData[i].x + ", " + trackingData[i].y + ", " + trackingData[i].width + ", " + trackingData[i].height + ")", 10, 480);
+          bw = trackingData[i].width;
+          bh = trackingData[i].height;
+          bx = trackingData[i].x;
+          by = trackingData[i].y;
+        }
+        // pop();
+        rectColor = trackingData[i].color;
+        noFill();
+        stroke(rectColor);
+        rect(trackingData[i].x, trackingData[i].y, trackingData[i].width, trackingData[i].height);
+  
+        // ratio of white blob and blue blob
+        wratio = ww / bw; // 10/2=5
+        hratio = wh / bw; // 5/2.5=2
+  //       xratio = wx / bx; // 10/5=2 (bx - wx)
+  //       yratio = wy / by; // 5
+  
+        // spirit's size and position
+        // sx = ((bx-wx) / (ww-wx)) * cw;
+        // sy = ((by-wy) / (wh-wy)) * ch;
+        // sw = cw / wratio;
+        // sh = ch / hratio;
+  
+        noStroke();
+        fill(0);
+      }
+    }
   } 
   else if (run) {
     // draw the video in full screen size
@@ -99,7 +150,7 @@ function drawCodingBlock() {
     tint(255, 200); // modify alpha value
     image(card, windowW / 2, (windowH - codeBarHeight) / 2, cardW, cardH);
     tint(255, 255);
-    text(cardName, windowW / 2, 15);
+    text(cardName, windowW / 2, 30);
   }
 }
 

@@ -36,6 +36,10 @@ let runBtn;
 let classifier;
 let modelURL = 'https://teachablemachine.withgoogle.com/models/0tuGHNcv5/';
 
+// color tracking
+let colors;
+let trackingData;
+
 // switch camera
 let options = {
   video: {
@@ -96,6 +100,7 @@ function setup() {
     cnv.parent('container');
     capture.position(0, 0);
     capture.style('opacity', 0); // hide capture
+    capture.id('myVideo');
 
     // classify coding blocks
     classifyCapture();
@@ -131,6 +136,27 @@ function setup() {
     //     tutorialBtn.id('tutorialBtn');
     //     tutorialBtn.position(10, 10);
     //     tutorialBtn.mousePressed(openTutorial);
+
+    tracking.ColorTracker.registerColor('white', function(r, g, b) {
+      if (r > 180 && g > 180 && b > 180) {
+        return true;
+      }
+      return false;
+    });
+  
+    tracking.ColorTracker.registerColor('blue', function(r, g, b) {
+      if (r < 50 && g < 85 && b > 55) {
+        return true;
+      }
+      return false;
+    });
+
+    colors = new tracking.ColorTracker(['white', 'blue']); // start the tracking of the colors above on the camera in p5
+    
+    colors.on('track', function(event) {
+      trackingData = event.data // break the trackingjs data into a global so we can access it with p5
+    });
+    tracking.track('#myVideo', colors);
 
   } 
 }
