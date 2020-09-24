@@ -21,16 +21,17 @@ function draw() {
   // draw the video
   imageMode(CENTER);
 
-  // flip the video if it runs on desktop or uses the front camera on mobile
-  push();  // save the style settings
-
-  if (!mobile || switchFlag) {  
-    translate(width, 0);
-    scale(-1, 1);
-  }
+  
 
   if (scan) {
+    if (!mobile || switchFlag) {  
+      push();  // save the style settings
+      translate(width, 0); // flip the video if it runs on desktop or uses the front camera on mobile
+      scale(-1, 1);
+    }
     image(capture, windowW / 2, (windowH - codeBarHeight) / 2, w, h); // resize needed on mobile screen
+    pop(); // restore the settings so the label is not flipped
+
     drawBottomBar();
     text("# of blobs: " , 0, 0);
   } 
@@ -51,7 +52,7 @@ function draw() {
     }
   }
 
-  pop(); // restore the settings so the label is not flipped
+  
 
   if (pause) {
     filter(GRAY); // if you hit the switchBtn, it should be not applied
