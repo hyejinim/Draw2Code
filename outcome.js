@@ -34,20 +34,22 @@ function draw() {
     // text("# of blobs: " , 0, 0);
   } 
   else if (run) {
+    push();
+    imageMode(CENTER);
     // draw the video in full screen size
     image(capture, windowW / 2, (windowH - codeBarHeight) / 2, windowW, windowH);
-    
-    if (cleanCode) {
-      drawSprites();
-      if (frameNum < frames.length) {
-        if (frameCount % 20 == 0) { // update every 20 frames
-          spr.position.x = frames[frameNum].x;
-          spr.position.y = frames[frameNum].y;
-          spr.scale = frames[frameNum].scale;
-          frameNum++;
-        }
+    pop(); 
+
+    drawSprites();
+    if (frameNum < frames.length) {
+      if (frameCount % 20 == 0) { // update every 20 frames
+        spr.position.x = frames[frameNum].x;
+        spr.position.y = frames[frameNum].y;
+        spr.scale = frames[frameNum].scale;
+        frameNum++;
       }
-    }
+    }  
+    
   }
 
   
@@ -113,7 +115,7 @@ function draw() {
       sy = (by-wy)*(windowH-codeBarHeight)/wh;
       sw = bw*(windowW/ww);
       sh = bh*(windowH/wh);
-      console.log('new x, y, w, h ', sx ,sy, sw, sh);
+      // console.log('new x, y, w, h ', sx ,sy, sw, sh);
 
       rect(sx, sy, sw, sh);
       pop();
@@ -122,8 +124,8 @@ function draw() {
       rect(wx, wy, ww, wh);
       
 
-      console.log('blue x, y, w, h', trackingData[i].x, trackingData[i].y);
-      console.log('white x, y, w, h', windowW/2-130, (windowH-codeBarHeight)/2-57);
+      // console.log('blue x, y, w, h', trackingData[i].x, trackingData[i].y);
+      // console.log('white x, y, w, h', windowW/2-130, (windowH-codeBarHeight)/2-57);
 
 
       noStroke();
@@ -199,12 +201,23 @@ function scanCard() {
       // save the image within the boundary
       drawing = takeSnap(windowW / 2 - 68, (windowH - codeBarHeight) / 2 - 90, 180, 180);
       console.log(drawing);
+      // create a sprite object when the sprite card is added
+      // sprite1 = {
+      //   resource: img,
+      //   x: 0,
+      //   y: 0,
+      //   scale: 0.5,
+      //   frames: frames,
+      // };
+      // sprites.push(sprite1);
+      spr = createSprite(0, 0);
+      spr.scale = 1;
+      spr.addImage(drawing);
     } else if (label == "Behavior") {
       drawing = takeSnap(windowW / 2 - 130, (windowH - codeBarHeight) / 2 - 70, 220, 130);
       // create Frame objects
-      frame = new Frame(200, 200, 0.3); // x, y, scale
+      frame = new Frame(sx, sy, 1); // x, y, scale
       frames.push(frame);
-      
     } else {
       drawing = '';
     }
