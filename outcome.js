@@ -18,17 +18,14 @@ let rectColor;
 function draw() {
   background(238, 238, 238);
 
-  // draw the video
-  imageMode(CENTER);
-
-  
-
   if (scan) {
     if (!mobile || switchFlag) {  
       push();  // save the style settings
       translate(width, 0); // flip the video if it runs on desktop or uses the front camera on mobile
       scale(-1, 1);
     }
+    // draw the video
+    imageMode(CENTER);
     image(capture, windowW / 2, (windowH - codeBarHeight) / 2, w, h); // resize needed on mobile screen
     pop(); // restore the settings so the label is not flipped
 
@@ -62,6 +59,7 @@ function draw() {
   // detectActionCard();
 
   if (trackingData) { //if there is tracking data to look at, then...
+    console.log(trackingData);
     for (var i = 0; i < trackingData.length; i++) { //loop through each of the detected colors    
       // push();
       noStroke();
@@ -88,6 +86,7 @@ function draw() {
       rectColor = trackingData[i].color;
       noFill();
       stroke(rectColor);
+      imageMode(CORNER);
       rect(trackingData[i].x, trackingData[i].y, trackingData[i].width, trackingData[i].height);
 
       // ratio of white blob and blue blob
@@ -145,6 +144,7 @@ function drawCodingBlock() {
     cardW = 360;
     cardH = 200;
     cardName = "Action";
+    // tracking.track('#myVideo', colors);
   }
 
   if (card) {
@@ -179,6 +179,7 @@ function scanCard() {
       // create Frame objects
       frame = new Frame(200, 200, 0.3); // x, y, scale
       frames.push(frame);
+      
     } else {
       drawing = '';
     }

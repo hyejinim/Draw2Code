@@ -49,6 +49,9 @@ let options = {
   }
 };
 
+// test
+let myImage;
+
 // load the model and images
 function preload() {
   classifier = ml5.imageClassifier(modelURL + 'model.json');
@@ -157,7 +160,6 @@ function setup() {
       trackingData = event.data // break the trackingjs data into a global so we can access it with p5
     });
     tracking.track('#myVideo', colors);
-
   } 
 }
 
