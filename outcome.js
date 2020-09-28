@@ -30,7 +30,7 @@ function draw() {
     pop(); // restore the settings so the label is not flipped
 
     drawBottomBar();
-    text("# of blobs: " , 0, 0);
+    // text("# of blobs: " , 0, 0);
   } 
   else if (run) {
     // draw the video in full screen size
@@ -59,39 +59,53 @@ function draw() {
   // detectActionCard();
 
   if (trackingData) { //if there is tracking data to look at, then...
-    console.log(trackingData);
+    // console.log(trackingData);
     for (var i = 0; i < trackingData.length; i++) { //loop through each of the detected colors    
       // push();
-      noStroke();
-      fill(0);
+
       // text("# of blobs: " + trackingData.length, 0, 0);
 
-      if (trackingData[i].color == 'white') {
+      // if (trackingData[i].color == 'white') {
 
-        // text("white blob: (" + trackingData[i].x + ", " + trackingData[i].y + ", " + trackingData[i].width + ", " + trackingData[i].height + ")", 10, 450);
-        ww = trackingData[i].width;
-        wh = trackingData[i].height;
-        wx = trackingData[i].x;
-        wy = trackingData[i].y;
+      //   // text("white blob: (" + trackingData[i].x + ", " + trackingData[i].y + ", " + trackingData[i].width + ", " + trackingData[i].height + ")", 10, 450);
+      //   ww = trackingData[i].width;
+      //   wh = trackingData[i].height;
+      //   wx = trackingData[i].x;
+      //   wy = trackingData[i].y;
 
-      } 
-      else if (trackingData[i].color == 'blue') {
-      // text("blue blob: (" + trackingData[i].x + ", " + trackingData[i].y + ", " + trackingData[i].width + ", " + trackingData[i].height + ")", 10, 480);
+      // } 
+      // else if (trackingData[i].color == 'blue') {
+      // // text("blue blob: (" + trackingData[i].x + ", " + trackingData[i].y + ", " + trackingData[i].width + ", " + trackingData[i].height + ")", 10, 480);
+      // bw = trackingData[i].width;
+      // bh = trackingData[i].height;
+      // bx = trackingData[i].x;
+      // by = trackingData[i].y;
+      // }
+      // pop();
+
       bw = trackingData[i].width;
       bh = trackingData[i].height;
       bx = trackingData[i].x;
       by = trackingData[i].y;
-      }
-      // pop();
+
       rectColor = trackingData[i].color;
       noFill();
       stroke(rectColor);
       imageMode(CORNER);
       rect(trackingData[i].x, trackingData[i].y, trackingData[i].width, trackingData[i].height);
 
+      stroke(255, 255 ,255);
+      rect(windowW/2-130, (windowH-codeBarHeight)/2-57, 225, 115);
+
+      console.log('blue x,  y', trackingData[i].x, trackingData[i].y);
+      console.log('white x, y', windowW/2-130, (windowH-codeBarHeight)/2-57);
+
+
+
       // ratio of white blob and blue blob
       wratio = ww / bw; // 10/2=5
       hratio = wh / bw; // 5/2.5=2
+
   //       xratio = wx / bx; // 10/5=2 (bx - wx)
   //       yratio = wy / by; // 5
 
