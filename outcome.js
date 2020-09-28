@@ -13,6 +13,7 @@ let frameNum = 0;
 
 let ww, wh, wx, wy; // white blob
 let bw, bh, bx, by; // blue blob
+let sx, sy, sw, sh; // new spirit
 let rectColor;
 
 function draw() {
@@ -83,10 +84,15 @@ function draw() {
       // }
       // pop();
 
+      bx = trackingData[i].x + (windowW/2-190);
+      by = trackingData[i].y + (windowH-codeBarHeight)/2-140;
       bw = trackingData[i].width;
       bh = trackingData[i].height;
-      bx = trackingData[i].x;
-      by = trackingData[i].y;
+
+      wx = windowW/2-130;
+      wy = (windowH-codeBarHeight)/2-57;
+      ww = 225;
+      wh = 115;
 
       rectColor = trackingData[i].color;
       noFill();
@@ -94,33 +100,30 @@ function draw() {
       imageMode(CORNER);
 
       push();  // save the style settings
-      translate(width, 0); // flip the video if it runs on desktop or uses the front camera on mobile
+      translate(width, 0); // flip the video for desktop
       scale(-1, 1);
-      
-      rect(trackingData[i].x + (windowW/2-190), trackingData[i].y + (windowH-codeBarHeight)/2-140, trackingData[i].width, trackingData[i].height);
+
+      rect(bx, by, bw, bh);
+
+
+      // spirit's size and position
+      stroke(0,0,0);
+      sx = (bx-wx)*(windowW/ww);
+      sy = (by-wy)*(windowH-codeBarHeight)/wh;
+      sw = bw*(windowW/ww);
+      sh = bh*(windowH/wh);
+      console.log('new x, y, w, h ', sx ,sy, sw, sh);
+
+      // rect(sx, sy, sw, sh);q
       pop();
 
       stroke(255, 255 ,255);
-      rect(windowW/2-130, (windowH-codeBarHeight)/2-57, 225, 115);
+      // rect(windowW/2-130, (windowH-codeBarHeight)/2-57, 225, 115);
       
 
-      console.log('blue x,  y', trackingData[i].x, trackingData[i].y);
-      console.log('white x, y', windowW/2-130, (windowH-codeBarHeight)/2-57);
+      console.log('blue x, y, w, h', trackingData[i].x, trackingData[i].y);
+      console.log('white x, y, w, h', windowW/2-130, (windowH-codeBarHeight)/2-57);
 
-
-
-      // ratio of white blob and blue blob
-      wratio = ww / bw; // 10/2=5
-      hratio = wh / bw; // 5/2.5=2
-
-  //       xratio = wx / bx; // 10/5=2 (bx - wx)
-  //       yratio = wy / by; // 5
-
-      // spirit's size and position
-      // sx = ((bx-wx) / (ww-wx)) * cw;
-      // sy = ((by-wy) / (wh-wy)) * ch;
-      // sw = cw / wratio;
-      // sh = ch / hratio;
 
       noStroke();
       fill(0);
