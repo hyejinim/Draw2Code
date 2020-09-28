@@ -92,10 +92,17 @@ function draw() {
       noFill();
       stroke(rectColor);
       imageMode(CORNER);
-      rect(trackingData[i].x, trackingData[i].y, trackingData[i].width, trackingData[i].height);
+
+      push();  // save the style settings
+      translate(width, 0); // flip the video if it runs on desktop or uses the front camera on mobile
+      scale(-1, 1);
+      
+      rect(trackingData[i].x + (windowW/2-190), trackingData[i].y + (windowH-codeBarHeight)/2-140, trackingData[i].width, trackingData[i].height);
+      pop();
 
       stroke(255, 255 ,255);
       rect(windowW/2-130, (windowH-codeBarHeight)/2-57, 225, 115);
+      
 
       console.log('blue x,  y', trackingData[i].x, trackingData[i].y);
       console.log('white x, y', windowW/2-130, (windowH-codeBarHeight)/2-57);
