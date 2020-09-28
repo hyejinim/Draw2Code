@@ -102,8 +102,8 @@ function draw() {
       imageMode(CORNER);
 
       push();  // save the style settings
-      translate(width, 0); // flip the video for desktop
-      scale(-1, 1);
+      // translate(width, 0); // flip the video for desktop
+      // scale(-1, 1);
 
       rect(bx, by, bw, bh);
 
