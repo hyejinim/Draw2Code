@@ -89,9 +89,9 @@ function draw() {
       bw = trackingData[i].width;
       bh = trackingData[i].height;
 
-      wx = windowW/2-130;
+      wx = windowW/2-90;
       wy = (windowH-codeBarHeight)/2-57;
-      ww = 225;
+      ww = 180;
       wh = 115;
 
       rectColor = trackingData[i].color;
@@ -108,17 +108,18 @@ function draw() {
 
       // spirit's size and position
       stroke(0,0,0);
+      imageMode(CORNER);
       sx = (bx-wx)*(windowW/ww);
       sy = (by-wy)*(windowH-codeBarHeight)/wh;
       sw = bw*(windowW/ww);
       sh = bh*(windowH/wh);
       console.log('new x, y, w, h ', sx ,sy, sw, sh);
 
-      // rect(sx, sy, sw, sh);q
+      rect(sx, sy, sw, sh);
       pop();
 
       stroke(255, 255 ,255);
-      // rect(windowW/2-130, (windowH-codeBarHeight)/2-57, 225, 115);
+      rect(wx, wy, ww, wh);
       
 
       console.log('blue x, y, w, h', trackingData[i].x, trackingData[i].y);
