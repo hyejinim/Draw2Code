@@ -10,6 +10,7 @@ let frames = [];
 let sprite1;
 let img;
 let frameNum = 0;
+let convertedScale;
 
 let ww, wh, wx, wy; // white blob
 let bw, bh, bx, by; // blue blob
@@ -32,23 +33,104 @@ function draw() {
 
     drawBottomBar();
     // text("# of blobs: " , 0, 0);
+    if (trackingData) { //if there is tracking data to look at, then...
+      // console.log(trackingData);
+      for (var i = 0; i < trackingData.length; i++) { //loop through each of the detected colors    
+        // push();
+  
+        // text("# of blobs: " + trackingData.length, 0, 0);
+  
+        // if (trackingData[i].color == 'white') {
+  
+        //   // text("white blob: (" + trackingData[i].x + ", " + trackingData[i].y + ", " + trackingData[i].width + ", " + trackingData[i].height + ")", 10, 450);
+        //   ww = trackingData[i].width;
+        //   wh = trackingData[i].height;
+        //   wx = trackingData[i].x;
+        //   wy = trackingData[i].y;
+  
+        // } 
+        // else if (trackingData[i].color == 'blue') {
+        // // text("blue blob: (" + trackingData[i].x + ", " + trackingData[i].y + ", " + trackingData[i].width + ", " + trackingData[i].height + ")", 10, 480);
+        // bw = trackingData[i].width;
+        // bh = trackingData[i].height;
+        // bx = trackingData[i].x;
+        // by = trackingData[i].y;
+        // }
+        // pop();
+  
+        bx = trackingData[i].x + (windowW/2-190);
+        by = trackingData[i].y + (windowH-codeBarHeight)/2-140;
+        bw = trackingData[i].width;
+        bh = trackingData[i].height;
+  
+        wx = windowW/2-90;
+        wy = (windowH-codeBarHeight)/2-57;
+        ww = 180;
+        wh = 115;
+  
+        rectColor = trackingData[i].color;
+        noFill();
+        stroke(rectColor);
+        imageMode(CORNER);
+  
+        push();  // save the style settings
+        translate(width, 0); // flip the video for desktop
+        scale(-1, 1);
+  
+        rect(bx, by, bw, bh);
+  
+  
+        // spirit's size and position
+        stroke(0,0,0);
+        imageMode(CORNER);
+        sx = (bx-wx)*(windowW/ww);
+        sy = (by-wy)*(windowH-codeBarHeight)/wh;
+        sw = bw*(windowW/ww);
+        sh = bh*(windowH/wh);
+        sx = Math.round(sx);
+        sy = Math.round(sy);
+        sw = Math.round(sw);
+        sh = Math.round(sh);
+        // console.log('new x, y, w, h ', sx ,sy, sw, sh);
+  
+        rect(sx, sy, sw, sh);
+        pop();
+  
+        stroke(255, 255 ,255);
+        rect(wx, wy, ww, wh);
+        
+  
+        // console.log('blue x, y, w, h', trackingData[i].x, trackingData[i].y);
+        // console.log('white x, y, w, h', windowW/2-130, (windowH-codeBarHeight)/2-57);
+  
+  
+        noStroke();
+        fill(0);
+      }
+    }
   } 
   else if (run) {
     push();
     imageMode(CENTER);
     // draw the video in full screen size
     image(capture, windowW / 2, (windowH - codeBarHeight) / 2, windowW, windowH);
-    pop(); 
-
+    
+    // push();  // save the style settings
+    // translate(width, 0); // flip the video if it runs on desktop or uses the front camera on mobile
+    // scale(-1, 1);
+    imageMode(CORNER);
     drawSprites();
     if (frameNum < frames.length) {
       if (frameCount % 20 == 0) { // update every 20 frames
-        spr.position.x = frames[frameNum].x;
-        spr.position.y = frames[frameNum].y;
+
+        spr.position.x = frames[frameNum].x + spr.width/2;
+        spr.position.y = frames[frameNum].y + spr.height/2;
         spr.scale = frames[frameNum].scale;
+        console.log('draw sprites: ', spr.position.x, spr.position.y, spr.scale);
         frameNum++;
       }
     }  
+    // pop(); 
     
   }
 
@@ -61,77 +143,7 @@ function draw() {
   drawCode();
   // detectActionCard();
 
-  if (trackingData) { //if there is tracking data to look at, then...
-    // console.log(trackingData);
-    for (var i = 0; i < trackingData.length; i++) { //loop through each of the detected colors    
-      // push();
-
-      // text("# of blobs: " + trackingData.length, 0, 0);
-
-      // if (trackingData[i].color == 'white') {
-
-      //   // text("white blob: (" + trackingData[i].x + ", " + trackingData[i].y + ", " + trackingData[i].width + ", " + trackingData[i].height + ")", 10, 450);
-      //   ww = trackingData[i].width;
-      //   wh = trackingData[i].height;
-      //   wx = trackingData[i].x;
-      //   wy = trackingData[i].y;
-
-      // } 
-      // else if (trackingData[i].color == 'blue') {
-      // // text("blue blob: (" + trackingData[i].x + ", " + trackingData[i].y + ", " + trackingData[i].width + ", " + trackingData[i].height + ")", 10, 480);
-      // bw = trackingData[i].width;
-      // bh = trackingData[i].height;
-      // bx = trackingData[i].x;
-      // by = trackingData[i].y;
-      // }
-      // pop();
-
-      bx = trackingData[i].x + (windowW/2-190);
-      by = trackingData[i].y + (windowH-codeBarHeight)/2-140;
-      bw = trackingData[i].width;
-      bh = trackingData[i].height;
-
-      wx = windowW/2-90;
-      wy = (windowH-codeBarHeight)/2-57;
-      ww = 180;
-      wh = 115;
-
-      rectColor = trackingData[i].color;
-      noFill();
-      stroke(rectColor);
-      imageMode(CORNER);
-
-      push();  // save the style settings
-      // translate(width, 0); // flip the video for desktop
-      // scale(-1, 1);
-
-      rect(bx, by, bw, bh);
-
-
-      // spirit's size and position
-      stroke(0,0,0);
-      imageMode(CORNER);
-      sx = (bx-wx)*(windowW/ww);
-      sy = (by-wy)*(windowH-codeBarHeight)/wh;
-      sw = bw*(windowW/ww);
-      sh = bh*(windowH/wh);
-      // console.log('new x, y, w, h ', sx ,sy, sw, sh);
-
-      rect(sx, sy, sw, sh);
-      pop();
-
-      stroke(255, 255 ,255);
-      rect(wx, wy, ww, wh);
-      
-
-      // console.log('blue x, y, w, h', trackingData[i].x, trackingData[i].y);
-      // console.log('white x, y, w, h', windowW/2-130, (windowH-codeBarHeight)/2-57);
-
-
-      noStroke();
-      fill(0);
-    }
-  }
+  
 }
 
 // draw the classification and image of coding block
@@ -171,7 +183,7 @@ function drawCodingBlock() {
     cardW = 360;
     cardH = 200;
     cardName = "Action";
-    // tracking.track('#myVideo', colors);
+    tracking.track('#myVideo', colors);
   }
 
   if (card) {
@@ -211,12 +223,19 @@ function scanCard() {
       // };
       // sprites.push(sprite1);
       spr = createSprite(0, 0);
-      spr.scale = 1;
+      spr.scale = 0.63;
       spr.addImage(drawing);
     } else if (label == "Behavior") {
       drawing = takeSnap(windowW / 2 - 130, (windowH - codeBarHeight) / 2 - 70, 220, 130);
+
+      // convert width and height to scale
+      // if (sw > 400  && sw < 555) {
+        // console.log('convert to scale');
+        // convertedScale == 4; // multiply 4
+      // }
+      console.log('sprite: ', sx, sy, sw, sh);
       // create Frame objects
-      frame = new Frame(sx, sy, 1); // x, y, scale
+      frame = new Frame(sx, sy, 2); // x, y, scale
       frames.push(frame);
     } else {
       drawing = '';

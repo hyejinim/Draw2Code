@@ -148,7 +148,7 @@ function setup() {
     });
   
     tracking.ColorTracker.registerColor('blue', function(r, g, b) {
-      if (r < 50 && g < 85 && b > 55) {
+      if (r < 50 && g < 85 && b > 100) {
         return true;
       }
       return false;
@@ -159,7 +159,7 @@ function setup() {
     colors.on('track', function(event) {
       trackingData = event.data // break the trackingjs data into a global so we can access it with p5
     });
-    tracking.track('#myVideo', colors);
+    // tracking.track('#myVideo', colors);
   } 
 }
 
