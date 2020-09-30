@@ -257,8 +257,10 @@ function Code(codingBlockName, drawing) {
     this.drawing = drawing;
 }
 
-function Frame(x, y, scale) {
+function Frame(x, y, w, h) {
   this.x = x;
   this.y = y;
   this.scale = scale;
+  this.w = w;
+  this.h = h;
 }

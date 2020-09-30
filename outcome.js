@@ -16,6 +16,7 @@ let ww, wh, wx, wy; // white blob
 let bw, bh, bx, by; // blue blob
 let sx, sy, sw, sh; // new spirit
 let rectColor;
+let sprX, sprY, sprW, sprH;
 
 function draw() {
   background(238, 238, 238);
@@ -31,7 +32,8 @@ function draw() {
     image(capture, windowW / 2, (windowH - codeBarHeight) / 2, w, h); // resize needed on mobile screen
     pop(); // restore the settings so the label is not flipped
 
-    drawBottomBar();
+    drawCodingBlock();
+    
     // text("# of blobs: " , 0, 0);
     if (trackingData) { //if there is tracking data to look at, then...
       // console.log(trackingData);
@@ -63,10 +65,10 @@ function draw() {
         bw = trackingData[i].width;
         bh = trackingData[i].height;
   
-        wx = windowW/2-90;
-        wy = (windowH-codeBarHeight)/2-57;
-        ww = 180;
-        wh = 115;
+        wx = windowW/2-ww/2 - 5;
+        wy = (windowH-codeBarHeight)/2-wh/2 + 5;
+        ww = 220;
+        wh = 140;
   
         rectColor = trackingData[i].color;
         noFill();
@@ -111,6 +113,9 @@ function draw() {
   } 
   else if (run) {
     push();
+
+    translate(width, 0); // flip the video for desktop
+    scale(-1, 1);
     imageMode(CENTER);
     // draw the video in full screen size
     image(capture, windowW / 2, (windowH - codeBarHeight) / 2, windowW, windowH);
@@ -118,19 +123,28 @@ function draw() {
     // push();  // save the style settings
     // translate(width, 0); // flip the video if it runs on desktop or uses the front camera on mobile
     // scale(-1, 1);
-    imageMode(CORNER);
-    drawSprites();
-    if (frameNum < frames.length) {
-      if (frameCount % 20 == 0) { // update every 20 frames
+    // imageMode(CORNER);
+    // drawSprites();
+    sprX = frames[frameNum].x;
+    sprY = frames[frameNum].y;
+    sprW = frames[frameNum].w;
+    sprH = frames[frameNum].w;
 
-        spr.position.x = frames[frameNum].x + spr.width/2;
-        spr.position.y = frames[frameNum].y + spr.height/2;
-        spr.scale = frames[frameNum].scale;
-        console.log('draw sprites: ', spr.position.x, spr.position.y, spr.scale);
+    imageMode(CORNER);
+    image(spr, sprX, sprY, sprW, sprH);
+
+    if (frameNum < frames.length-1) {
+      if (frameCount % 20 == 0) { // update every 20 frames
+        sprX = frames[frameNum].x;
+        sprY = frames[frameNum].y;
+        sprW = frames[frameNum].w;
+        sprH = frames[frameNum].w;
         frameNum++;
+        // spr.scale = frames[frameNum].scale;
+        // console.log('draw sprites: ', spr.position.x, spr.position.y, spr.scale);
       }
     }  
-    // pop(); 
+    pop(); 
     
   }
 
@@ -139,11 +153,9 @@ function draw() {
   if (pause) {
     filter(GRAY); // if you hit the switchBtn, it should be not applied
   }
-  drawCodingBlock();
-  drawCode();
-  // detectActionCard();
-
   
+  drawBottomBar();
+  drawCode();  
 }
 
 // draw the classification and image of coding block
@@ -180,8 +192,8 @@ function drawCodingBlock() {
     cardName = "Scissors";
   } else if (label == "Behavior") {
     card = Action;
-    cardW = 360;
-    cardH = 200;
+    cardW = 340; 
+    cardH = 250; 
     cardName = "Action";
     tracking.track('#myVideo', colors);
   }
@@ -197,6 +209,7 @@ function drawCodingBlock() {
 function drawBottomBar() {
   noStroke();
   fill("#fff");
+  imageMode(CORNER);
   rect(0, windowH - codeBarHeight, windowW, codeBarHeight + 100);
 }
 
@@ -222,9 +235,11 @@ function scanCard() {
       //   frames: frames,
       // };
       // sprites.push(sprite1);
-      spr = createSprite(0, 0);
-      spr.scale = 0.63;
-      spr.addImage(drawing);
+
+      spr = drawing;
+      // spr = createSprite(0, 0);
+      // spr.scale = 0.63;
+      // spr.addImage(drawing);
     } else if (label == "Behavior") {
       drawing = takeSnap(windowW / 2 - 130, (windowH - codeBarHeight) / 2 - 70, 220, 130);
 
@@ -235,7 +250,7 @@ function scanCard() {
       // }
       console.log('sprite: ', sx, sy, sw, sh);
       // create Frame objects
-      frame = new Frame(sx, sy, 2); // x, y, scale
+      frame = new Frame(sx, sy, sw, sh); // x, y, width, height
       frames.push(frame);
     } else {
       drawing = '';
@@ -258,6 +273,7 @@ function drawCode() {
   let itemGap = 0;
   let doodle = '';
 
+  imageMode(CENTER);
   for (let i = 0; i < codes.length; i++) {
     item = codes[i].codingBlockName;
     doodle = codes[i].drawing;
