@@ -95,11 +95,11 @@ function draw() {
         sh = Math.round(sh);
         // console.log('new x, y, w, h ', sx ,sy, sw, sh);
   
-        rect(sx, sy, sw, sh);
+        // rect(sx, sy, sw, sh);
         pop();
   
         stroke(255, 255 ,255);
-        rect(wx, wy, ww, wh);
+        // rect(wx, wy, ww, wh);
         
   
         // console.log('blue x, y, w, h', trackingData[i].x, trackingData[i].y);
@@ -112,6 +112,8 @@ function draw() {
     }
   } 
   else if (run) {
+
+    
     push();
 
     translate(width, 0); // flip the video for desktop
@@ -125,11 +127,14 @@ function draw() {
     // scale(-1, 1);
     // imageMode(CORNER);
     // drawSprites();
+
+    showAnimation();
+
     sprX = frames[frameNum].x;
     sprY = frames[frameNum].y;
     sprW = frames[frameNum].w;
     sprH = frames[frameNum].w;
-
+    
     imageMode(CORNER);
     image(spr, sprX, sprY, sprW, sprH);
 
@@ -195,7 +200,17 @@ function drawCodingBlock() {
     cardW = 340; 
     cardH = 250; 
     cardName = "Action";
-    tracking.track('#myVideo', colors);
+    
+    colors = new tracking.ColorTracker(['blue']); // start the tracking of the colors above on the camera in p5
+    
+    colors.on('track', function(event) {
+      trackingData = event.data // break the trackingjs data into a global so we can access it with p5
+      setTimeout(() => {
+        trackingTask.stop();
+      }, 5500);
+    });
+    const trackingTask = tracking.track('#myVideo', colors);
+
   }
 
   if (card) {
@@ -307,3 +322,14 @@ function drawCode() {
   }
 }
 
+function showAnimation() {
+  if (label == "Rock") {
+    text(label, windowW / 2, 30);
+  } else if (label == "Scissors") {
+    text("None", windowW / 2, 30);
+  } else if (label == "Paper") {
+    text("None", windowW / 2, 30);
+  } else if (label == "None") {
+    text("None", windowW / 2, 30);
+  } 
+}

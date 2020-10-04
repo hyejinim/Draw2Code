@@ -154,11 +154,11 @@ function setup() {
       return false;
     });
 
-    colors = new tracking.ColorTracker(['blue']); // start the tracking of the colors above on the camera in p5
+    // colors = new tracking.ColorTracker(['blue']); // start the tracking of the colors above on the camera in p5
     
-    colors.on('track', function(event) {
-      trackingData = event.data // break the trackingjs data into a global so we can access it with p5
-    });
+    // colors.on('track', function(event) {
+    //   trackingData = event.data // break the trackingjs data into a global so we can access it with p5
+    // });
     // tracking.track('#myVideo', colors);
   } 
 }
@@ -245,6 +245,7 @@ function switchMode() {
     run = true;
     scan = false;
     modelURL = 'https://teachablemachine.withgoogle.com/models/VOgRsStGF/'; // rock scissors paper
+    classifier = ml5.imageClassifier(modelURL + 'model.json');
   } else {
     scan = true;
     run = false;    
