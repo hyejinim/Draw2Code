@@ -76,6 +76,7 @@ function draw() {
         imageMode(CORNER);
   
         push();  // save the style settings
+        if ()
         translate(width, 0); // flip the video for desktop
         scale(-1, 1);
   
@@ -116,8 +117,11 @@ function draw() {
     
     push();
 
-    translate(width, 0); // flip the video for desktop
-    scale(-1, 1);
+    if (!mobile) {  
+      translate(width, 0); // flip the video for desktop
+      scale(-1, 1);
+    }
+
     imageMode(CENTER);
     // draw the video in full screen size
     image(capture, windowW / 2, (windowH - codeBarHeight) / 2, windowW, windowH);
