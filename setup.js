@@ -158,26 +158,13 @@ function setup() {
       }
       return false;
     });
-
-    // colors = new tracking.ColorTracker(['blue']); // start the tracking of the colors above on the camera in p5
-    
-    // colors.on('track', function(event) {
-    //   trackingData = event.data // break the trackingjs data into a global so we can access it with p5
-    // });
-    // tracking.track('#myVideo', colors);
   } 
 }
 
 function switchCamera() {
   console.log('switchBtn clicked ' + switchFlag);
   switchFlag = !switchFlag;
-  // if (scan) {
-  //   captureW = w;
-  //   captureH = h;
-  // }
-  // else if (run) {
 
-  // }
   stopCapture();
   if (switchFlag) {
     capture.remove();
@@ -246,7 +233,6 @@ function pauseCapture() {
 }
 
 function classifyCapture() {
-  // let roi = get((windowW/2)-250/2, (windowH-codeBarHeight)/2-250/2, 250, 250);
   classifier.classify(capture, gotResults);
 }
 
@@ -276,7 +262,11 @@ function switchMode() {
     document.getElementById('scanBtn').remove();
   } else {
     scan = true;
-    run = false;    
+    run = false;
+    modelURL = 'https://teachablemachine.withgoogle.com/models/0tuGHNcv5/'; // coding block
+    classifier = ml5.imageClassifier(modelURL + 'model.json');
+    // classify coding blocks
+    classifyCapture();    
   }
 }
 
