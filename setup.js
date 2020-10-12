@@ -174,30 +174,30 @@ function switchCamera() {
 
   // }
   stopCapture();
-  // if (switchFlag) {
-  //   capture.remove();
-  //   options = {
-  //     video: {
-  //       facingMode: {
-  //         exact: "user"
-  //       },
-  //       width: w,
-  //       height: h
-  //     }
-  //   };
-  // } else {
-  //   capture.remove();
-  //   options = {
-  //     video: {
-  //       facingMode: {
-  //         exact: "environment"
-  //       },
-  //       width: w,
-  //       height: h
-  //     }
-  //   };
-  // }
-  // capture = createCapture(options);
+  if (switchFlag) {
+    capture.remove();
+    options = {
+      video: {
+        facingMode: {
+          exact: "user"
+        },
+        width: w,
+        height: h
+      }
+    };
+  } else {
+    capture.remove();
+    options = {
+      video: {
+        facingMode: {
+          exact: "environment"
+        },
+        width: w,
+        height: h
+      }
+    };
+  }
+  capture = createCapture(options);
 
   // classify coding blocks
   classifyCapture();
