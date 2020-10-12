@@ -197,11 +197,12 @@ function switchCamera() {
       }
     };
   }
-  // capture = createCapture(options);
-  // capture.size(w, h);
+  capture = createCapture(options);
+  capture.size(w, h);
+  capture.parent('container');
 
   // classify coding blocks
-  // classifyCapture();
+  classifyCapture();
 }
 
 function stopCapture() {
