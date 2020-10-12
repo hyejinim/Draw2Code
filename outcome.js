@@ -332,8 +332,10 @@ function drawCode() {
 
 function showAnimation() {
   push();
-  translate(width, 0); // flip the video for desktop
-  scale(-1, 1);
+  if (!mobile) {
+    translate(width, 0); // flip the video for desktop
+    scale(-1, 1);
+  }
   if (label == "Rock") {
     text("Rock", windowW / 2, 30);
   } else if (label == "Scissors") {
