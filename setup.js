@@ -15,6 +15,7 @@ let pause = false;
 let switchFlag = false;
 let modeRun = false;
 let mobile;
+let playFlag = false;
 
 // code arrays
 let codes = [];
@@ -31,6 +32,7 @@ let Behavior;
 let switchBtn;
 let scanBtn;
 let runBtn;
+let playBtn;
 
 // classifier
 let classifier;
@@ -118,10 +120,10 @@ function setup() {
       switchBtn.position(19, 19);
       switchBtn.mousePressed(switchCamera);
 
-      // replayBtn = createButton('Replay');
-      // replayBtn.id('replayBtn');
-      // replayBtn.position(19, 39);
-      // replayBtn.mousePressed(replay);
+      playBtn = createButton('Play');
+      playBtn.id('playBtn');
+      playBtn.position(19, 39);
+      playBtn.mousePressed(play);
     }
 
     pauseBtn = createButton('Pause');
@@ -282,4 +284,8 @@ function Frame(x, y, w, h) {
   this.scale = scale;
   this.w = w;
   this.h = h;
+}
+
+function play() {
+  playFlag = !playFlag;
 }

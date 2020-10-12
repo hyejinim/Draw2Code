@@ -139,23 +139,6 @@ function draw() {
 
     imageMode(CORNER);
     
-
-    if (frameNum < frames.length-1) {
-      sprX = frames[frameNum].x;
-      sprY = frames[frameNum].y;
-      sprW = frames[frameNum].w;
-      sprH = frames[frameNum].w;
-      image(spr, sprX, sprY, sprW, sprH);
-      if (frameCount % 15 == 0) { // update every 20 frames
-        sprX = frames[frameNum].x;
-        sprY = frames[frameNum].y;
-        sprW = frames[frameNum].w;
-        sprH = frames[frameNum].w;
-        frameNum++;
-        // spr.scale = frames[frameNum].scale;
-        // console.log('draw sprites: ', spr.position.x, spr.position.y, spr.scale);
-      }
-    }  
     pop(); 
     
   }
@@ -335,6 +318,24 @@ function showAnimation() {
     translate(width, 0); // flip the video for desktop
     scale(-1, 1);
   }
+  if (playFlag) {
+    if (frameNum < frames.length-1) {
+      sprX = frames[frameNum].x;
+      sprY = frames[frameNum].y;
+      sprW = frames[frameNum].w;
+      sprH = frames[frameNum].w;
+      image(spr, sprX, sprY, sprW, sprH);
+      if (frameCount % 15 == 0) { // update every 20 frames
+        sprX = frames[frameNum].x;
+        sprY = frames[frameNum].y;
+        sprW = frames[frameNum].w;
+        sprH = frames[frameNum].w;
+        frameNum++;
+      }
+      playFlag = !playFlag;
+    }  
+  } 
+  
   if (label == "Rock") {
     text("Rock", windowW / 2, 30);
   } else if (label == "Scissors") {
