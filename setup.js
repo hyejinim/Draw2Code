@@ -259,7 +259,7 @@ function switchMode() {
     document.getElementById('scanBtn').remove();
     playBtn = createButton('Play');
     playBtn.id('playBtn');
-    playBtn.position(19, 39);
+    playBtn.position(19, 49);
     playBtn.mousePressed(play);
   } else {
     scan = true;
