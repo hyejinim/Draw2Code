@@ -335,13 +335,13 @@ function showAnimation() {
   translate(width, 0); // flip the video for desktop
   scale(-1, 1);
   if (label == "Rock") {
-    text(label, windowW / 2, 30);
+    text("Rock", windowW / 2, 30);
   } else if (label == "Scissors") {
-    text("None", windowW / 2, 30);
+    text("Scissors", windowW / 2, 30);
   } else if (label == "Paper") {
-    text("None", windowW / 2, 30);
+    text("Paper", windowW / 2, 30);
   } else if (label == "None") {
-    text("Hmm", windowW / 2, 30);
+    text("None", windowW / 2, 30);
   } 
   pop();
 }
