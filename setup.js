@@ -119,11 +119,6 @@ function setup() {
       switchBtn.id('switchBtn');
       switchBtn.position(19, 19);
       switchBtn.mousePressed(switchCamera);
-
-      playBtn = createButton('Play');
-      playBtn.id('playBtn');
-      playBtn.position(19, 39);
-      playBtn.mousePressed(play);
     }
 
     pauseBtn = createButton('Pause');
@@ -262,6 +257,10 @@ function switchMode() {
     document.getElementById('runBtn').remove();
     document.getElementById('pauseBtn').remove();
     document.getElementById('scanBtn').remove();
+    playBtn = createButton('Play');
+    playBtn.id('playBtn');
+    playBtn.position(19, 39);
+    playBtn.mousePressed(play);
   } else {
     scan = true;
     run = false;
