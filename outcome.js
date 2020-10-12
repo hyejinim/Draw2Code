@@ -118,7 +118,6 @@ function draw() {
   } 
   else if (run) {
 
-    
     push();
 
     if (!mobile) {  
@@ -127,30 +126,24 @@ function draw() {
     }
 
     imageMode(CENTER);
-    // draw the video in full screen size
-    image(capture, windowW / 2, (windowH - codeBarHeight) / 2, windowW, windowH);
-    // push();  // save the style settings
-    // translate(width, 0); // flip the video if it runs on desktop or uses the front camera on mobile
-    // scale(-1, 1);
-    // imageMode(CORNER);
-    // drawSprites();
-
-    showAnimation();
-
+    image(capture, windowW / 2, (windowH - codeBarHeight) / 2, windowW, windowH); // draw the video in full screen size
+    
     imageMode(CORNER);
+    showAnimation();
     
     pop(); 
     
   }
 
-  
-
   if (pause) {
     filter(GRAY); // if you hit the switchBtn, it should be not applied
   }
+  if (codeFlag) {
+    codeFlag = !codeFlag;
+    drawBottomBar();
+    drawCode();  
+  }
   
-  // drawBottomBar();
-  // drawCode();  
 }
 
 // draw the classification and image of coding block
@@ -231,28 +224,12 @@ function scanCard() {
       // save the image within the boundary
       drawing = takeSnap(windowW / 2 - 68, (windowH - codeBarHeight) / 2 - 90, 180, 180);
       console.log(drawing);
-      // create a sprite object when the sprite card is added
-      // sprite1 = {
-      //   resource: img,
-      //   x: 0,
-      //   y: 0,
-      //   scale: 0.5,
-      //   frames: frames,
-      // };
-      // sprites.push(sprite1);
 
       spr = drawing;
-      // spr = createSprite(0, 0);
-      // spr.scale = 0.63;
-      // spr.addImage(drawing);
+
     } else if (label == "Behavior") {
       drawing = takeSnap(windowW / 2 - 130, (windowH - codeBarHeight) / 2 - 70, 220, 130);
 
-      // convert width and height to scale
-      // if (sw > 400  && sw < 555) {
-        // console.log('convert to scale');
-        // convertedScale == 4; // multiply 4
-      // }
       console.log('sprite: ', sx, sy, sw, sh);
       // create Frame objects
       frame = new Frame(sx, sy, sw, sh); // x, y, width, height

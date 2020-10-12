@@ -16,6 +16,7 @@ let switchFlag = false;
 let modeRun = false;
 let mobile;
 let playFlag = false;
+let codeFlag = false;
 
 // code arrays
 let codes = [];
@@ -33,6 +34,7 @@ let switchBtn;
 let scanBtn;
 let runBtn;
 let playBtn;
+let codeBtn;
 
 // classifier
 let classifier;
@@ -257,10 +259,17 @@ function switchMode() {
     document.getElementById('runBtn').remove();
     document.getElementById('pauseBtn').remove();
     document.getElementById('scanBtn').remove();
+    
     playBtn = createButton('Play');
     playBtn.id('playBtn');
     playBtn.position(19, 49);
     playBtn.mousePressed(play);
+
+    codeBtn = createButton('Code');
+    codeBtn.id('codeBtn');
+    codeBtn.position(19, 79);
+    codeBtn.mousePressed(showCode);
+
   } else {
     scan = true;
     run = false;
@@ -287,4 +296,8 @@ function Frame(x, y, w, h) {
 
 function play() {
   playFlag = !playFlag;
+}
+
+function showCode() {
+  codeFlag = !codeFlag;
 }
