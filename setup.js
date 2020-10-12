@@ -246,6 +246,11 @@ function switchMode() {
     scan = false;
     modelURL = 'https://teachablemachine.withgoogle.com/models/VOgRsStGF/'; // rock scissors paper
     classifier = ml5.imageClassifier(modelURL + 'model.json');
+    // classify coding blocks
+    classifyCapture();
+    document.getElementById('runBtn').remove();
+    document.getElementById('pauseBtn').remove();
+    document.getElementById('scanBtn').remove();
   } else {
     scan = true;
     run = false;    

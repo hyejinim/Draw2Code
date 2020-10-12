@@ -76,10 +76,12 @@ function draw() {
         imageMode(CORNER);
   
         push();  // save the style settings
-        if ()
+
+        if (!mobile) {
         translate(width, 0); // flip the video for desktop
         scale(-1, 1);
-  
+        }
+
         rect(bx, by, bw, bh);
   
   
@@ -111,6 +113,8 @@ function draw() {
         fill(0);
       }
     }
+    drawBottomBar();
+    drawCode();  
   } 
   else if (run) {
 
@@ -134,15 +138,15 @@ function draw() {
 
     showAnimation();
 
-    sprX = frames[frameNum].x;
-    sprY = frames[frameNum].y;
-    sprW = frames[frameNum].w;
-    sprH = frames[frameNum].w;
-    
     imageMode(CORNER);
-    image(spr, sprX, sprY, sprW, sprH);
+    
 
     if (frameNum < frames.length-1) {
+      sprX = frames[frameNum].x;
+      sprY = frames[frameNum].y;
+      sprW = frames[frameNum].w;
+      sprH = frames[frameNum].w;
+      image(spr, sprX, sprY, sprW, sprH);
       if (frameCount % 20 == 0) { // update every 20 frames
         sprX = frames[frameNum].x;
         sprY = frames[frameNum].y;
@@ -163,8 +167,8 @@ function draw() {
     filter(GRAY); // if you hit the switchBtn, it should be not applied
   }
   
-  drawBottomBar();
-  drawCode();  
+  // drawBottomBar();
+  // drawCode();  
 }
 
 // draw the classification and image of coding block
@@ -221,7 +225,7 @@ function drawCodingBlock() {
     tint(255, 200); // modify alpha value
     image(card, windowW / 2, (windowH - codeBarHeight) / 2, cardW, cardH);
     tint(255, 255);
-    text(cardName, windowW / 2, 30);
+      text(cardName, windowW / 2, 30);
   }
 }
 
@@ -327,6 +331,9 @@ function drawCode() {
 }
 
 function showAnimation() {
+  push();
+  translate(width, 0); // flip the video for desktop
+  scale(-1, 1);
   if (label == "Rock") {
     text(label, windowW / 2, 30);
   } else if (label == "Scissors") {
@@ -334,6 +341,7 @@ function showAnimation() {
   } else if (label == "Paper") {
     text("None", windowW / 2, 30);
   } else if (label == "None") {
-    text("None", windowW / 2, 30);
+    text("Hmm", windowW / 2, 30);
   } 
+  pop();
 }
