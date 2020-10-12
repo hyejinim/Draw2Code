@@ -332,7 +332,7 @@ function showAnimation() {
         sprH = frames[frameNum].w;
         frameNum++;
       }
-      playFlag = !playFlag;
+      // playFlag = !playFlag;
     }  
   } 
   
