@@ -146,7 +146,7 @@ function draw() {
       sprW = frames[frameNum].w;
       sprH = frames[frameNum].w;
       image(spr, sprX, sprY, sprW, sprH);
-      if (frameCount % 20 == 0) { // update every 20 frames
+      if (frameCount % 15 == 0) { // update every 20 frames
         sprX = frames[frameNum].x;
         sprY = frames[frameNum].y;
         sprW = frames[frameNum].w;
