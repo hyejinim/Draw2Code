@@ -166,6 +166,13 @@ function setup() {
 function switchCamera() {
   console.log('switchBtn clicked ' + switchFlag);
   switchFlag = !switchFlag;
+  // if (scan) {
+  //   captureW = w;
+  //   captureH = h;
+  // }
+  // else if (run) {
+
+  // }
   stopCapture();
   if (switchFlag) {
     capture.remove();

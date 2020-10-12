@@ -29,7 +29,7 @@ function draw() {
     }
     // draw the video
     imageMode(CENTER);
-    // image(capture, windowW / 2, (windowH - codeBarHeight) / 2, w, h); // resize needed on mobile screen
+    image(capture, windowW / 2, (windowH - codeBarHeight) / 2, w, h); // resize needed on mobile screen
     pop(); // restore the settings so the label is not flipped
 
     drawCodingBlock();
@@ -129,7 +129,6 @@ function draw() {
     imageMode(CENTER);
     // draw the video in full screen size
     image(capture, windowW / 2, (windowH - codeBarHeight) / 2, windowW, windowH);
-    
     // push();  // save the style settings
     // translate(width, 0); // flip the video if it runs on desktop or uses the front camera on mobile
     // scale(-1, 1);
