@@ -198,8 +198,16 @@ function switchCamera() {
     };
   }
   capture = createCapture(options);
+
+  capture.elt.setAttribute('playsinline', '');
+  // capture.hide();
   capture.size(w, h);
   capture.parent('container');
+  cnv = createCanvas(windowW, windowH + 100);
+  cnv.parent('container');
+  capture.position(0, 0);
+  capture.style('opacity', 0); // hide capture
+  capture.id('myVideo');
 
   // classify coding blocks
   classifyCapture();
