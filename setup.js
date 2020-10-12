@@ -117,6 +117,11 @@ function setup() {
       switchBtn.id('switchBtn');
       switchBtn.position(19, 19);
       switchBtn.mousePressed(switchCamera);
+
+      // replayBtn = createButton('Replay');
+      // replayBtn.id('replayBtn');
+      // replayBtn.position(19, 39);
+      // replayBtn.mousePressed(replay);
     }
 
     pauseBtn = createButton('Pause');
@@ -199,16 +204,16 @@ function switchCamera() {
   }
   capture = createCapture(options);
 
-  // capture.elt.setAttribute('playsinline', '');
-  // // capture.hide();
-  // capture.size(w, h);
-  // capture.parent('container');
-  // cnv = createCanvas(windowW, windowH + 100);
-  // cnv.parent('container');
+  capture.elt.setAttribute('playsinline', '');
+  // capture.hide();
+  capture.size(w, h);
+  capture.parent('container');
+  cnv = createCanvas(windowW, windowH + 100);
+  cnv.parent('container');
   
-  // capture.position(0, 0);
-  // capture.style('opacity', 0); // hide capture
-  // capture.id('myVideo');
+  capture.position(0, 0);
+  capture.style('opacity', 0); // hide capture
+  capture.id('myVideo');
 
   // classify coding blocks
   classifyCapture();
