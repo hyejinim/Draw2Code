@@ -29,7 +29,7 @@ function draw() {
     }
     // draw the video
     imageMode(CENTER);
-    image(capture, windowW / 2, (windowH - codeBarHeight) / 2, w, h); // resize needed on mobile screen
+    // image(capture, windowW / 2, (windowH - codeBarHeight) / 2, w, h); // resize needed on mobile screen
     pop(); // restore the settings so the label is not flipped
 
     drawCodingBlock();
