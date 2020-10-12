@@ -181,8 +181,8 @@ function switchCamera() {
         facingMode: {
           exact: "user"
         },
-        width: w,
-        height: h
+        width: windowW,
+        height: windowH
       }
     };
   } else {
@@ -192,12 +192,13 @@ function switchCamera() {
         facingMode: {
           exact: "environment"
         },
-        width: w,
-        height: h
+        width: windowW,
+        height: windowH
       }
     };
   }
   capture = createCapture(options);
+  capture.size(w, h);
 
   // classify coding blocks
   classifyCapture();
