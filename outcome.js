@@ -71,7 +71,7 @@ function draw() {
         ww = 220;
         wh = 140;
   
-        rectColor = trackingData[i].color;
+        rectColor = "yellow";
         noFill();
         stroke(rectColor);
         imageMode(CORNER);
