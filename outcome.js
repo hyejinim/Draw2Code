@@ -305,10 +305,10 @@ function drawCode() {
 
 function showAnimation() {
   push();
-  if (mobile) {
-    translate(width, 0); // flip the video for desktop
-    scale(-1, 1);
-  }
+  // if (mobile) {
+  //   translate(width, 0); // flip the video for desktop
+  //   scale(-1, 1);
+  // }
   if (playFlag) {
     console.log("play animation");
     if (frameNum < sprites[spritesNum].events[eventsNum].frames.length) {
