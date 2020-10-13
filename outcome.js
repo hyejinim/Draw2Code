@@ -318,7 +318,7 @@ function showAnimation() {
       sprH = sprites[spritesNum].events[eventsNum].frames[frameNum].w;
       
       image(spr, sprX, sprY, sprW, sprH);
-      if (frameCount % 15 == 0) { // update every # frames
+      if (frameCount % 10 == 0) { // update every # frames
         sprX = sprites[spritesNum].events[eventsNum].frames[frameNum].x;
         sprY = sprites[spritesNum].events[eventsNum].frames[frameNum].y;
         sprW = sprites[spritesNum].events[eventsNum].frames[frameNum].w;
