@@ -8,9 +8,10 @@ let cleanCode = false;
 let sprites = [];
 let frames = [];
 let sprite1;
+let spritesNum = 0;
+let eventsNum = 0;
 let img;
 let frameNum = 0;
-let convertedScale;
 
 let ww, wh, wx, wy; // white blob
 let bw, bh, bx, by; // blue blob
@@ -139,7 +140,6 @@ function draw() {
     filter(GRAY); // if you hit the switchBtn, it should be not applied
   }
   if (codeFlag) {
-    codeFlag = !codeFlag;
     drawBottomBar();
     drawCode();  
   }
@@ -217,29 +217,43 @@ function scanCard() {
   let code;
   let drawing;
   let frame;
+  let sprite;
+  let event;
 
   if (label != "None" && label != "Undefined" && label != "waiting...") {
 
     if (label == "Resource") {
+      
       // save the image within the boundary
       drawing = takeSnap(windowW / 2 - 68, (windowH - codeBarHeight) / 2 - 90, 180, 180);
-      console.log(drawing);
 
       spr = drawing;
-
+      sprite = {
+        drawing: drawing,
+        events: [],
+      };
+      sprites.push(sprite);
+      spritesNum = sprites.length - 1;
+    } else if (label == "Trigger_Scissors") {
+      event = {
+        type: label,
+        frames: [] 
+      };
+      sprites[spritesNum].events.push(event);
+      eventsNum = sprites[spritesNum].events.length - 1;
     } else if (label == "Behavior") {
       drawing = takeSnap(windowW / 2 - 130, (windowH - codeBarHeight) / 2 - 70, 220, 130);
 
       console.log('sprite: ', sx, sy, sw, sh);
       // create Frame objects
       frame = new Frame(sx, sy, sw, sh); // x, y, width, height
-      frames.push(frame);
+      sprites[spritesNum].events[eventsNum].frames.push(frame);
     } else {
       drawing = '';
     }
     code = new Code(label, drawing);
     codes.push(code);
-    console.log(code);
+    console.log(sprites);
   }
 }
 
@@ -291,26 +305,30 @@ function drawCode() {
 
 function showAnimation() {
   push();
-  if (!mobile) {
-    translate(width, 0); // flip the video for desktop
-    scale(-1, 1);
-  }
+  // if (!mobile) {
+  //   translate(width, 0); // flip the video for desktop
+  //   scale(-1, 1);
+  // }
   if (playFlag) {
-    if (frameNum < frames.length-1) {
-      sprX = frames[frameNum].x;
-      sprY = frames[frameNum].y;
-      sprW = frames[frameNum].w;
-      sprH = frames[frameNum].w;
+    console.log("play animation");
+    if (frameNum < sprites[spritesNum].events[eventsNum].frames.length) {
+      sprX = sprites[spritesNum].events[eventsNum].frames[frameNum].x;
+      sprY = sprites[spritesNum].events[eventsNum].frames[frameNum].y;
+      sprW = sprites[spritesNum].events[eventsNum].frames[frameNum].w;
+      sprH = sprites[spritesNum].events[eventsNum].frames[frameNum].w;
+      
       image(spr, sprX, sprY, sprW, sprH);
-      if (frameCount % 15 == 0) { // update every 20 frames
-        sprX = frames[frameNum].x;
-        sprY = frames[frameNum].y;
-        sprW = frames[frameNum].w;
-        sprH = frames[frameNum].w;
-        frameNum++;
+      if (frameCount % 15 == 0) { // update every # frames
+        sprX = sprites[spritesNum].events[eventsNum].frames[frameNum].x;
+        sprY = sprites[spritesNum].events[eventsNum].frames[frameNum].y;
+        sprW = sprites[spritesNum].events[eventsNum].frames[frameNum].w;
+        sprH = sprites[spritesNum].events[eventsNum].frames[frameNum].w;
+        frameNum = frameNum + 1;
       }
-      // playFlag = !playFlag;
     }  
+    if (frameNum == sprites[spritesNum].events[eventsNum].frames.length) {
+      playFlag = !playFlag;
+    }
   } 
   
   if (label == "Rock") {

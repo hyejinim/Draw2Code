@@ -18,10 +18,11 @@ let mobile;
 let playFlag = false;
 let codeFlag = false;
 
-// code arrays
+// code 
 let codes = [];
 let spirits = [];
 let actions = [];
+let currentEvent;
 
 // card images
 let Resource;
@@ -289,13 +290,13 @@ function Code(codingBlockName, drawing) {
 function Frame(x, y, w, h) {
   this.x = x;
   this.y = y;
-  this.scale = scale;
   this.w = w;
   this.h = h;
 }
 
 function play() {
   playFlag = !playFlag;
+  frameNum = 0;
 }
 
 function showCode() {
