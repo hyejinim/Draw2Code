@@ -1,7 +1,7 @@
 let frame = 0;
 let index = 0;
 let spirit;
-let codeBarHeight = 120;
+let codeBarHeight = 80;
 let cleanCode = false;
 
 // authoring
