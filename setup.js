@@ -1,6 +1,6 @@
 // video
 let capture;
-let w = 420;
+let w = 380;
 let h = 280;
 let windowW = window.innerWidth;
 let windowH = window.innerHeight;
@@ -69,10 +69,10 @@ function preload() {
   Event_Run = loadImage('assets/cards/Event_Run.png');
   Event_Scissors = loadImage('assets/cards/Event_Scissors.png');
   Action = loadImage('assets/cards/Action.png');
-  Banana = loadImage('assets/cards/Banana.png');
-  Marker1 = loadImage('assets/cards/Marker1.png');
-  Marker2 = loadImage('assets/cards/Marker2.png');
-  Marker3 = loadImage('assets/cards/Marker3.png');
+  // Banana = loadImage('assets/cards/Banana.png');
+  // Marker1 = loadImage('assets/cards/Marker1.png');
+  // Marker2 = loadImage('assets/cards/Marker2.png');
+  // Marker3 = loadImage('assets/cards/Marker3.png');
 }
 
 function setup() {

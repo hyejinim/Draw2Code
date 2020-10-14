@@ -148,27 +148,29 @@ function drawCodingBlock() {
     cardW = 300;
     cardH = 250;
     cardName = "Scissors";
-  } else if (label == "Banana") {
-    card = Banana;
-    cardW = 300;
-    cardH = 250;
-    cardName = "Banana";
-  } else if (label == "Marker1") {
-    card = Marker1;
-    cardW = 300;
-    cardH = 250;
-    cardName = "Marker1";
-  } else if (label == "Marker2") {
-    card = Marker2;
-    cardW = 300;
-    cardH = 250;
-    cardName = "Marker2";
-  } else if (label == "Marker3") {
-    card = Marker3;
-    cardW = 300;
-    cardH = 250;
-    cardName = "Marker3";
-  } else if (label == "Behavior") {
+  } 
+  // else if (label == "Banana") {
+  //   card = Banana;
+  //   cardW = 300;
+  //   cardH = 250;
+  //   cardName = "Banana";
+  // } else if (label == "Marker1") {
+  //   card = Marker1;
+  //   cardW = 300;
+  //   cardH = 250;
+  //   cardName = "Marker1";
+  // } else if (label == "Marker2") {
+  //   card = Marker2;
+  //   cardW = 300;
+  //   cardH = 250;
+  //   cardName = "Marker2";
+  // } else if (label == "Marker3") {
+  //   card = Marker3;
+  //   cardW = 300;
+  //   cardH = 250;
+  //   cardName = "Marker3";
+  // } 
+  else if (label == "Behavior") {
     card = Action;
     cardW = 340; 
     cardH = 250; 
