@@ -21,6 +21,7 @@ let sprX, sprY, sprW, sprH;
 
 function draw() {
   background(238, 238, 238);
+  // background(0, 0, 0);
 
   if (scan) {
     if (!mobile || switchFlag) {  
@@ -35,31 +36,8 @@ function draw() {
 
     drawCodingBlock();
     
-    // text("# of blobs: " , 0, 0);
     if (trackingData) { //if there is tracking data to look at, then...
-      // console.log(trackingData);
       for (var i = 0; i < trackingData.length; i++) { //loop through each of the detected colors    
-        // push();
-  
-        // text("# of blobs: " + trackingData.length, 0, 0);
-  
-        // if (trackingData[i].color == 'white') {
-  
-        //   // text("white blob: (" + trackingData[i].x + ", " + trackingData[i].y + ", " + trackingData[i].width + ", " + trackingData[i].height + ")", 10, 450);
-        //   ww = trackingData[i].width;
-        //   wh = trackingData[i].height;
-        //   wx = trackingData[i].x;
-        //   wy = trackingData[i].y;
-  
-        // } 
-        // else if (trackingData[i].color == 'blue') {
-        // // text("blue blob: (" + trackingData[i].x + ", " + trackingData[i].y + ", " + trackingData[i].width + ", " + trackingData[i].height + ")", 10, 480);
-        // bw = trackingData[i].width;
-        // bh = trackingData[i].height;
-        // bx = trackingData[i].x;
-        // by = trackingData[i].y;
-        // }
-        // pop();
   
         bx = trackingData[i].x + (windowW/2-190);
         by = trackingData[i].y + (windowH-codeBarHeight)/2-140;
@@ -97,18 +75,10 @@ function draw() {
         sy = Math.round(sy);
         sw = Math.round(sw);
         sh = Math.round(sh);
-        // console.log('new x, y, w, h ', sx ,sy, sw, sh);
   
-        // rect(sx, sy, sw, sh);
         pop();
   
         stroke(255, 255 ,255);
-        // rect(wx, wy, ww, wh);
-        
-  
-        // console.log('blue x, y, w, h', trackingData[i].x, trackingData[i].y);
-        // console.log('white x, y, w, h', windowW/2-130, (windowH-codeBarHeight)/2-57);
-  
   
         noStroke();
         fill(0);
@@ -178,6 +148,26 @@ function drawCodingBlock() {
     cardW = 300;
     cardH = 250;
     cardName = "Scissors";
+  } else if (label == "Banana") {
+    card = Banana;
+    cardW = 300;
+    cardH = 250;
+    cardName = "Banana";
+  } else if (label == "Marker1") {
+    card = Marker1;
+    cardW = 300;
+    cardH = 250;
+    cardName = "Marker1";
+  } else if (label == "Marker2") {
+    card = Marker2;
+    cardW = 300;
+    cardH = 250;
+    cardName = "Marker2";
+  } else if (label == "Marker3") {
+    card = Marker3;
+    cardW = 300;
+    cardH = 250;
+    cardName = "Marker3";
   } else if (label == "Behavior") {
     card = Action;
     cardW = 340; 
@@ -234,7 +224,7 @@ function scanCard() {
       };
       sprites.push(sprite);
       spritesNum = sprites.length - 1;
-    } else if (label == "Trigger_Scissors") {
+    } else if (label == "Trigger_Scissors" || label == "Trigger_Run") {
       event = {
         type: label,
         frames: [] 
@@ -312,6 +302,7 @@ function showAnimation() {
   if (playFlag) {
     console.log("play animation");
     if (frameNum < sprites[spritesNum].events[eventsNum].frames.length) {
+      // if (sprites[spritesNum].events[].type == "Trigger_Run")
       sprX = sprites[spritesNum].events[eventsNum].frames[frameNum].x;
       sprY = sprites[spritesNum].events[eventsNum].frames[frameNum].y;
       sprW = sprites[spritesNum].events[eventsNum].frames[frameNum].w;
