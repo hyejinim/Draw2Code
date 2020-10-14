@@ -183,7 +183,6 @@ function drawCodingBlock() {
       }, 5500);
     });
     const trackingTask = tracking.track('#myVideo', colors);
-
   }
 
   if (card) {
