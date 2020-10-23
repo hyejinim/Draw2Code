@@ -306,14 +306,14 @@ function showAnimation() {
     }
   } 
   
-  if (label == "Rock") {
-    text("Rock", windowW / 2, 30);
-  } else if (label == "Scissors") {
-    text("Scissors", windowW / 2, 30);
-  } else if (label == "Paper") {
-    text("Paper", windowW / 2, 30);
-  } else if (label == "None") {
-    text("None", windowW / 2, 30);
-  } 
+  // if (label == "Rock") {
+  //   text("Rock", windowW / 2, 30);
+  // } else if (label == "Scissors") {
+  //   text("Scissors", windowW / 2, 30);
+  // } else if (label == "Paper") {
+  //   text("Paper", windowW / 2, 30);
+  // } else if (label == "None") {
+  //   text("None", windowW / 2, 30);
+  // } 
   pop();
 }
