@@ -34,7 +34,7 @@ function draw() {
       alert("The page is best viewed in landscape mode");
     }
   
-    if (deviceOrientation == LANDSCAPE && windowH > windowW) {
+    if (windowH > windowW) {
       alert("Please refresh the page for best view");
     }
     
