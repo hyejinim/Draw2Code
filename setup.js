@@ -2,8 +2,8 @@
 let capture;
 let w = 380;
 let h = 280;
-let windowW = window.innerWidth;
-let windowH = window.innerHeight;
+let windowW;
+let windowH;
 
 // to store the classification
 let label = 'waiting...';
@@ -79,7 +79,12 @@ function setup() {
   if (deviceOrientation == PORTRAIT) {
     alert("The page is best viewed in landscape mode")
   }
-  
+
+  if (deviceOrientation == LANDSCAPE) {
+    windowW = window.innerWidth;
+    windowH = window.innerHeight;
+  }
+
   pixelDensity(1);
 
   // detect device
