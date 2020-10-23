@@ -86,7 +86,6 @@ function setup() {
     alert("The page is best viewed in LANDSCAPE mode");
   }
 
-  // if (deviceOrientation == LANDSCAPE || !mobile) {
   if (scan) {
     // create canvas
     capture = createCapture({
@@ -261,7 +260,7 @@ function gotResults(error, results) {
 function switchMode() {
   modeRun = !modeRun;
   if (modeRun) {
-    console.log("modeRun": modeRun);
+    console.log("modeRun", modeRun);
     run = true;
     scan = false;
     modelURL = 'https://teachablemachine.withgoogle.com/models/VOgRsStGF/'; // rock scissors paper
