@@ -22,7 +22,7 @@ let sprX, sprY, sprW, sprH;
 function draw() {
   background(238, 238, 238);
   // background(0, 0, 0);
-
+  if (deviceOrientation == LANDSCAPE || !mobile) {
   if (scan) {
     if (!mobile || switchFlag) {  
       push();  // save the style settings
@@ -30,10 +30,8 @@ function draw() {
       scale(-1, 1);
     }
   
-    if (deviceOrientation == LANDSCAPE) {
-      if (windowH > windowW) {
+    if (deviceOrientation == LANDSCAPE && windowH > windowW) {
         alert("Please refresh the page");
-      }
     }
     
     // draw the video
@@ -120,7 +118,7 @@ function draw() {
     drawBottomBar();
     drawCode();  
   }
-  
+}
 }
 
 // draw the classification and image of coding block
