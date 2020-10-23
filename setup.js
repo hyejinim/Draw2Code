@@ -272,9 +272,9 @@ function switchMode() {
     document.getElementById('scanBtn').remove();
     // document.getElementById('pauseBtn').remove();
     
-    playBtn = createButton('Play');
+    playBtn = createButton('<i class="fa fa-home"></i> Play');
     playBtn.id('playBtn');
-    playBtn.position(19, 49);
+    playBtn.position(windowW - 100, 19);
     playBtn.mousePressed(play);
 
     codeBtn = createButton('Code');
