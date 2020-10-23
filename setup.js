@@ -283,7 +283,7 @@ function switchMode() {
     codeBtn.mousePressed(showCode);
 
     if (mobile) {
-      switchBtn = createButton('<i class="fa fa-sync-alt"></i>');
+      switchBtn = createButton('<i class="fas fa-sync-alt"></i>');
       switchBtn.id('switchBtn');
       switchBtn.position(windowW - 100, 79);
       switchBtn.mousePressed(switchCamera);
