@@ -76,6 +76,10 @@ function preload() {
 }
 
 function setup() {
+  if (deviceOrientation == PORTRAIT) {
+    alert("The page is best viewed in landscape mode")
+  }
+  
   pixelDensity(1);
 
   // detect device
