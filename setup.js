@@ -129,17 +129,17 @@ function setup() {
     // detectMarkers();
 
     // add buttons
-    if (mobile) {
-      switchBtn = createButton('Switch Camera');
-      switchBtn.id('switchBtn');
-      switchBtn.position(19, 19);
-      switchBtn.mousePressed(switchCamera);
-    }
+    // if (mobile) {
+    //   switchBtn = createButton('Switch Camera');
+    //   switchBtn.id('switchBtn');
+    //   switchBtn.position(19, 19);
+    //   switchBtn.mousePressed(switchCamera);
+    // }
 
-    pauseBtn = createButton('Pause');
-    pauseBtn.id('pauseBtn');
-    pauseBtn.position(19, 49);
-    pauseBtn.mousePressed(pauseCapture);
+    // pauseBtn = createButton('Pause');
+    // pauseBtn.id('pauseBtn');
+    // pauseBtn.position(19, 49);
+    // pauseBtn.mousePressed(pauseCapture);
 
     runBtn = createButton('Run');
     runBtn.id('runBtn'); 
@@ -317,6 +317,13 @@ function switchMode() {
     codeBtn.id('codeBtn');
     codeBtn.position(19, 79);
     codeBtn.mousePressed(showCode);
+
+    if (mobile) {
+      switchBtn = createButton('Switch Camera');
+      switchBtn.id('switchBtn');
+      switchBtn.position(19, 19);
+      switchBtn.mousePressed(switchCamera);
+    }
 
   } else {
     scan = true;
