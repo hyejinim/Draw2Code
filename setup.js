@@ -141,12 +141,12 @@ function setup() {
     // pauseBtn.position(19, 49);
     // pauseBtn.mousePressed(pauseCapture);
 
-    runBtn = createButton('Run');
+    runBtn = createButton('<i class="fa fa-check"></i> Run');
     runBtn.id('runBtn'); 
-    runBtn.position(19, 79);
+    runBtn.position(windowW - 100, 19);
     runBtn.mousePressed(switchMode);
 
-    scanBtn = createButton('Scan');
+    scanBtn = createButton('<i class="fa fa-camera"></i><br>Scan');
     scanBtn.id('scanBtn');
     scanBtn.position(windowW - 100, (windowH - codeBarHeight) / 2 - 40);
     scanBtn.mousePressed(scanCard);
@@ -272,14 +272,14 @@ function switchMode() {
     document.getElementById('scanBtn').remove();
     // document.getElementById('pauseBtn').remove();
     
-    playBtn = createButton('<i class="fa fa-home"></i> Play');
+    playBtn = createButton('<i class="fa fa-play"></i> Play');
     playBtn.id('playBtn');
     playBtn.position(windowW - 100, 19);
     playBtn.mousePressed(play);
 
-    codeBtn = createButton('Code');
+    codeBtn = createButton('<i class="fa fa-window-maximize"></i> See Code');
     codeBtn.id('codeBtn');
-    codeBtn.position(19, 79);
+    codeBtn.position(19, 19);
     codeBtn.mousePressed(showCode);
 
     if (mobile) {
