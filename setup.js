@@ -279,13 +279,13 @@ function switchMode() {
 
     codeBtn = createButton('<i class="fa fa-eye"></i> Code');
     codeBtn.id('codeBtn');
-    codeBtn.position(49, 19);
+    codeBtn.position(windowW - 100, 79);
     codeBtn.mousePressed(showCode);
 
     if (mobile) {
       switchBtn = createButton('sync-alt');
       switchBtn.id('switchBtn');
-      switchBtn.position(19, 19);
+      switchBtn.position(windowW - 100, 49);
       switchBtn.mousePressed(switchCamera);
     }
 
