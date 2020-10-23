@@ -277,7 +277,7 @@ function switchMode() {
     playBtn.position(windowW - 100, 19);
     playBtn.mousePressed(play);
 
-    codeBtn = createButton('<i class="fa fa-window-maximize"></i> See Code');
+    codeBtn = createButton('<i class="fa fa-eye"></i> Code');
     codeBtn.id('codeBtn');
     codeBtn.position(19, 19);
     codeBtn.mousePressed(showCode);
