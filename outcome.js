@@ -29,6 +29,15 @@ function draw() {
       translate(width, 0); // flip the video if it runs on desktop or uses the front camera on mobile
       scale(-1, 1);
     }
+
+    if (deviceOrientation == PORTRAIT) {
+      alert("The page is best viewed in landscape mode");
+    }
+  
+    if (deviceOrientation == LANDSCAPE && windowH > windowW) {
+      alert("Please refresh the page for best view");
+    }
+    
     // draw the video
     imageMode(CENTER);
     image(capture, windowW / 2, (windowH - codeBarHeight) / 2, w, h); // resize needed on mobile screen

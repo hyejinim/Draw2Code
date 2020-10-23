@@ -76,14 +76,6 @@ function preload() {
 }
 
 function setup() {
-  if (deviceOrientation == PORTRAIT) {
-    alert("The page is best viewed in landscape mode");
-  }
-
-  if (deviceOrientation == LANDSCAPE && windowH > windowW) {
-    alert("Please refresh the page for best view");
-  }
-
   pixelDensity(1);
 
   // detect device
@@ -161,12 +153,12 @@ function setup() {
     //     tutorialBtn.position(10, 10);
     //     tutorialBtn.mousePressed(openTutorial);
 
-    tracking.ColorTracker.registerColor('white', function(r, g, b) {
-      if (r > 180 && g > 180 && b > 180) {
-        return true;
-      }
-      return false;
-    });
+    // tracking.ColorTracker.registerColor('white', function(r, g, b) {
+    //   if (r > 180 && g > 180 && b > 180) {
+    //     return true;
+    //   }
+    //   return false;
+    // });
   
     tracking.ColorTracker.registerColor('blue', function(r, g, b) {
       if (r < 50 && g < 85 && b > 100) {
@@ -176,6 +168,8 @@ function setup() {
     });
   } 
 }
+
+
 
 function switchCamera() {
   console.log('switchBtn clicked ' + switchFlag);
