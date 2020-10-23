@@ -170,45 +170,7 @@ function setup() {
       return false;
     });
   } 
-  // window.addEventListener("orientationchange", function(event){
-  //   reset();
-  // });
 }
-
-// function reset() {
-//   alert("reset");
-//   windowW = window.innerWidth;
-//   windowH = window.innerHeight;
-
-//   // reposition scan button
-//   document.getElementById('scanBtn').remove();
-//   scanBtn = createButton('Scan');
-//   scanBtn.id('scanBtn');
-//   scanBtn.position(windowW - 100, (windowH - codeBarHeight) / 2 - 40);
-//   scanBtn.mousePressed(scanCard);
-
-//   capture.remove();
-//   capture = {
-//     video: {
-//       facingMode: {
-//         exact: "environment"
-//       },
-//       width: windowW,
-//       height: windowH
-//     }
-//   };
-//   capture = createCapture(capture);
-
-//   capture.size(w, h);
-//   capture.parent('container');
-//   cnv = createCanvas(windowW, windowH + 100);
-//   cnv.parent('container');
-//   capture.position(0, 0);
-//   capture.style('opacity', 0); // hide capture
-//   capture.id('myVideo');
-// }
-
-
 
 function switchCamera() {
   console.log('switchBtn clicked ' + switchFlag);
@@ -299,15 +261,17 @@ function gotResults(error, results) {
 function switchMode() {
   modeRun = !modeRun;
   if (modeRun) {
+    console.log("modeRun": modeRun);
     run = true;
     scan = false;
     modelURL = 'https://teachablemachine.withgoogle.com/models/VOgRsStGF/'; // rock scissors paper
     classifier = ml5.imageClassifier(modelURL + 'model.json');
     // classify coding blocks
     classifyCapture();
+
     document.getElementById('runBtn').remove();
-    document.getElementById('pauseBtn').remove();
     document.getElementById('scanBtn').remove();
+    // document.getElementById('pauseBtn').remove();
     
     playBtn = createButton('Play');
     playBtn.id('playBtn');
