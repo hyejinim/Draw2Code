@@ -106,7 +106,7 @@ button {
     font-size: 12px;
     background-color: #D3D3D3;
     color: black;
-    padding: 0.5em;
+    padding: 0.5em 0.2em 0.5em 0.2em;
     border-radius: 15%;
 }
 
