@@ -30,7 +30,7 @@ function draw() {
       scale(-1, 1);
     }
   
-    if (deviceOrientation == LANDSCAPE && windowH > windowW) {
+    if (windowH > windowW) {
         alert("Please refresh the page");
     }
     
