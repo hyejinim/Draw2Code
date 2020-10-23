@@ -80,7 +80,7 @@ function setup() {
     alert("The page is best viewed in landscape mode")
   }
 
-  if (deviceOrientation == LANDSCAPE) {
+  if (deviceOrientation == LANDSCAPE || deviceOrientation == undefined) {
     windowW = window.innerWidth;
     windowH = window.innerHeight;
   }
