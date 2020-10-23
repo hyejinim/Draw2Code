@@ -86,7 +86,7 @@ function setup() {
     alert("The page is best viewed in LANDSCAPE mode");
   }
 
-  if (deviceOrientation == LANDSCAPE || !mobile) {
+  // if (deviceOrientation == LANDSCAPE || !mobile) {
   if (scan) {
     // create canvas
     capture = createCapture({
@@ -170,7 +170,6 @@ function setup() {
       return false;
     });
   } 
-}
   // window.addEventListener("orientationchange", function(event){
   //   reset();
   // });
