@@ -83,7 +83,7 @@ function setup() {
   console.log('this is mobile device: ' + mobile);
 
   if (deviceOrientation == PORTRAIT) {
-    alert("The page is best viewed in landscape mode");
+    alert("The page is best viewed in LANDSCAPE mode");
   }
 
   if (scan) {
@@ -169,36 +169,43 @@ function setup() {
       return false;
     });
   } 
-  window.addEventListener("orientationchange", function(event){
-    reset();
-  });
+  // window.addEventListener("orientationchange", function(event){
+  //   reset();
+  // });
 }
 
-function reset() {
-  alert("reset");
-  windowW = window.innerWidth;
-  windowH = window.innerHeight;
+// function reset() {
+//   alert("reset");
+//   windowW = window.innerWidth;
+//   windowH = window.innerHeight;
 
-  // reposition scan button
-  document.getElementById('scanBtn').remove();
-  scanBtn = createButton('Scan');
-  scanBtn.id('scanBtn');
-  scanBtn.position(windowW - 100, (windowH - codeBarHeight) / 2 - 40);
-  scanBtn.mousePressed(scanCard);
+//   // reposition scan button
+//   document.getElementById('scanBtn').remove();
+//   scanBtn = createButton('Scan');
+//   scanBtn.id('scanBtn');
+//   scanBtn.position(windowW - 100, (windowH - codeBarHeight) / 2 - 40);
+//   scanBtn.mousePressed(scanCard);
 
-  capture = {
-    video: {
-      facingMode: {
-        exact: "environment"
-      },
-      width: windowW,
-      height: windowH
-    }
-  };
-  capture = createCapture(capture);
+//   capture.remove();
+//   capture = {
+//     video: {
+//       facingMode: {
+//         exact: "environment"
+//       },
+//       width: windowW,
+//       height: windowH
+//     }
+//   };
+//   capture = createCapture(capture);
 
-  cnv = createCanvas(windowW, windowH + 100);
-}
+//   capture.size(w, h);
+//   capture.parent('container');
+//   cnv = createCanvas(windowW, windowH + 100);
+//   cnv.parent('container');
+//   capture.position(0, 0);
+//   capture.style('opacity', 0); // hide capture
+//   capture.id('myVideo');
+// }
 
 
 
@@ -238,7 +245,6 @@ function switchCamera() {
   capture.parent('container');
   cnv = createCanvas(windowW, windowH + 100);
   cnv.parent('container');
-  
   capture.position(0, 0);
   capture.style('opacity', 0); // hide capture
   capture.id('myVideo');

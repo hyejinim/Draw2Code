@@ -30,9 +30,9 @@ function draw() {
       scale(-1, 1);
     }
   
-    // if (windowH > windowW) {
-    //   alert("Please refresh the page");
-    // }
+    if (windowH > windowW) {
+      alert("Please refresh the page");
+    }
     
     // draw the video
     imageMode(CENTER);
