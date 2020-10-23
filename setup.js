@@ -141,17 +141,15 @@ function setup() {
     pauseBtn.position(19, 49);
     pauseBtn.mousePressed(pauseCapture);
 
-    scanBtn = createButton('Scan');
-    scanBtn.id('scanBtn');
-    scanBtn.position(windowW - 100, (windowH - codeBarHeight) / 2 - 40);
-    scanBtn.mousePressed(scanCard);
-
-
     runBtn = createButton('Run');
     runBtn.id('runBtn'); 
     runBtn.position(19, 79);
     runBtn.mousePressed(switchMode);
 
+    scanBtn = createButton('Scan');
+    scanBtn.id('scanBtn');
+    scanBtn.position(windowW - 100, (windowH - codeBarHeight) / 2 - 40);
+    scanBtn.mousePressed(scanCard);
     //     tutorialBtn = createButton('Tutorial');
     //     tutorialBtn.id('tutorialBtn');
     //     tutorialBtn.position(10, 10);
@@ -171,6 +169,35 @@ function setup() {
       return false;
     });
   } 
+  window.addEventListener("orientationchange", function(event){
+    reset();
+  });
+}
+
+function reset() {
+  alert("reset");
+  windowW = window.innerWidth;
+  windowH = window.innerHeight;
+
+  // reposition scan button
+  document.getElementById('scanBtn').remove();
+  scanBtn = createButton('Scan');
+  scanBtn.id('scanBtn');
+  scanBtn.position(windowW - 100, (windowH - codeBarHeight) / 2 - 40);
+  scanBtn.mousePressed(scanCard);
+
+  capture = {
+    video: {
+      facingMode: {
+        exact: "environment"
+      },
+      width: windowW,
+      height: windowH
+    }
+  };
+  capture = createCapture(capture);
+
+  cnv = createCanvas(windowW, windowH + 100);
 }
 
 
