@@ -29,10 +29,6 @@ function draw() {
       translate(width, 0); // flip the video if it runs on desktop or uses the front camera on mobile
       scale(-1, 1);
     }
-
-    if (deviceOrientation == PORTRAIT) {
-      alert("The page is best viewed in landscape mode");
-    }
   
     if (windowH > windowW) {
       alert("Please refresh the page for best view");

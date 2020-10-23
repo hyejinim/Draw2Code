@@ -82,6 +82,10 @@ function setup() {
   mobile = isMobileDevice();
   console.log('this is mobile device: ' + mobile);
 
+  if (deviceOrientation == PORTRAIT) {
+    alert("The page is best viewed in landscape mode");
+  }
+
   if (scan) {
     // create canvas
     capture = createCapture({
