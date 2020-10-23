@@ -101,6 +101,15 @@ button {
     border-radius: 15%;
 }
 
+#switchBtn {
+    font-family: 'Work Sans';
+    font-size: 18px;
+    background-color: #D3D3D3;
+    color: black;
+    padding: 0.5em;
+    border-radius: 15%;
+}
+
 #tutorialBtn {
     /* top: 10px;
     left: 10px; */
