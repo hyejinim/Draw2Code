@@ -135,7 +135,7 @@ function drawCodingBlock() {
   textFont('Work Sans');
 
   if (label == "waiting...") {
-    text(label, windowW / 2, 30);
+    text("Waiting...", windowW / 2, 30);
   } else if (label == "None") {
     text("Scan your code", windowW / 2, 30);
   } else if (label == "Resource") {
@@ -174,7 +174,7 @@ function drawCodingBlock() {
     tint(255, 200); // modify alpha value
     image(card, windowW / 2, (windowH - codeBarHeight) / 2, cardW, cardH);
     tint(255, 255);
-      text(cardName, windowW / 2, 30);
+      // text(cardName, windowW / 2, 30);
   }
 }
 
