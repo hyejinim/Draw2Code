@@ -65,9 +65,9 @@ let myImage;
 function preload() {
   classifier = ml5.imageClassifier(modelURL + 'model.json');
 
-  Spirit = loadImage('assets/cards/Spirit.png');
-  Event_Run = loadImage('assets/cards/Event_Run.png');
-  Event_Scissors = loadImage('assets/cards/Event_Scissors.png');
+  Spirit = loadImage('assets/cards/Sprite.png');
+  Event_Run = loadImage('assets/cards/Play.png');
+  Event_Scissors = loadImage('assets/cards/Scissor.png');
   Action = loadImage('assets/cards/Action.png');
   // Banana = loadImage('assets/cards/Banana.png');
   // Marker1 = loadImage('assets/cards/Marker1.png');
