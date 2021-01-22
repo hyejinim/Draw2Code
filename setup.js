@@ -1,6 +1,6 @@
 // video
 let capture;
-let w = 380;
+let w = 460;
 let h = 280;
 let windowW = window.innerWidth;
 let windowH = window.innerHeight;
@@ -65,10 +65,10 @@ let myImage;
 function preload() {
   classifier = ml5.imageClassifier(modelURL + 'model.json');
 
-  Spirit = loadImage('assets/cards/Sprite.png');
-  Event_Run = loadImage('assets/cards/Play.png');
-  Event_Scissors = loadImage('assets/cards/Scissor.png');
-  Action = loadImage('assets/cards/Action.png');
+  Spirit = loadImage('assets/cards/Sprite_Outline.png');
+  Event_Run = loadImage('assets/cards/Play_Outline.png');
+  Event_Scissors = loadImage('assets/cards/Scissor_Outline.png');
+  Action = loadImage('assets/cards/Action_Outline.png');
   // Banana = loadImage('assets/cards/Banana.png');
   // Marker1 = loadImage('assets/cards/Marker1.png');
   // Marker2 = loadImage('assets/cards/Marker2.png');
@@ -82,9 +82,9 @@ function setup() {
   mobile = isMobileDevice();
   console.log('this is mobile device: ' + mobile);
 
-  if (deviceOrientation == PORTRAIT) {
-    alert("The page is best viewed in LANDSCAPE mode");
-  }
+  // if (deviceOrientation == PORTRAIT) {
+  //   alert("The page is best viewed in LANDSCAPE mode");
+  // }
 
   if (scan) {
     // create canvas

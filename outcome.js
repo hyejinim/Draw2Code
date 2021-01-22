@@ -30,9 +30,9 @@ function draw() {
       scale(-1, 1);
     }
   
-    if (windowH > windowW) {
-        alert("Please refresh the page");
-    }
+    // if (windowH > windowW) {
+    //     alert("Please refresh the page");
+    // }
     
     // draw the video
     imageMode(CENTER);
@@ -278,7 +278,7 @@ function drawCode() {
 }
 
 function showAnimation() {
-  push();
+  push(); 
   // if (mobile) {
   //   translate(width, 0); // flip the video for desktop
   //   scale(-1, 1);
