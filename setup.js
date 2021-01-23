@@ -93,9 +93,9 @@ function setup() {
   mobile = isMobileDevice();
   console.log('this is mobile device: ' + mobile);
 
-  // if (deviceOrientation == PORTRAIT) {
-  //   alert("The page is best viewed in LANDSCAPE mode");
-  // }
+  if (deviceOrientation == PORTRAIT) {
+    alert("Rotate the screen to LANDSCAPE mode and refresh the page");
+  }
 
   if (scan) {
     // create canvas

@@ -29,9 +29,9 @@ function draw() {
       scale(-1, 1);
     }
   
-    // if (windowH > windowW) {
-    //     alert("Please refresh the page");
-    // }
+    if (windowH > windowW) {
+        alert("Rotate the screen to LANDSCAPE mode and refresh the page");
+    }
     
     // draw the video
     imageMode(CENTER);
