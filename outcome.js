@@ -439,7 +439,7 @@ function showAnimation() {
   }
 
   if (label == "Rock") {
-    text("Rock", windowW / 2, 30);
+    // text("Rock", windowW / 2, 30);
     if (sprites[spritesNum].eventRock.length != 0) {
       rockCount = rockCount + 1;
       console.log('rockCount: ', rockCount);
@@ -449,7 +449,7 @@ function showAnimation() {
       }
     }
   } else if (label == "Scissors") {
-    text("Scissors", windowW / 2, 30);
+    // text("Scissors", windowW / 2, 30);
     if (sprites[spritesNum].eventScissors.length != 0) {
       scissorsCount = scissorsCount + 1;
       console.log('scissorsCount: ', scissorsCount);
@@ -459,7 +459,7 @@ function showAnimation() {
       }
     }
   } else if (label == "Paper") {
-    text("Paper", windowW / 2, 30);
+    // text("Paper", windowW / 2, 30);
     if (sprites[spritesNum].eventPaper.length != 0) {
       PaperCount = PaperCount + 1;
       console.log('paperCount: ', paperCount);
@@ -469,7 +469,7 @@ function showAnimation() {
       }
     }
   } else if (label == "None") {
-    text("None", windowW / 2, 30);
+    // text("None", windowW / 2, 30);
   } 
 
   pop();
