@@ -4,6 +4,7 @@ let w = 460;
 let h = 280;
 let windowW = window.innerWidth;
 let windowH = window.innerHeight;
+let codeBarHeight = 80;
 
 // to store the classification
 let label = 'waiting...';
@@ -17,6 +18,12 @@ let modeRun = false;
 let mobile;
 let playFlag = false;
 let codeFlag = false;
+let scissorsFlag = false;
+let scissorsCount = 0;
+let rockFlag = false;
+let rockCount = 0;
+let paperFlag = false;
+let paperCount = 0;
 
 // code 
 let codes = [];
@@ -26,13 +33,15 @@ let currentEvent;
 
 // card images
 let Resource;
-let Trigger_Run;
-let Trigger_Scissors;
+let Event_Play;
+let Event_Scissors;
 let Behavior;
-let Banana;
-let Marker1;
-let Marker2;
-let Marker3;
+let Event_Rock;
+let Event_Paper;
+// let Banana;
+// let Marker1;
+// let Marker2;
+// let Marker3;
 
 // buttons
 let switchBtn;
@@ -66,8 +75,10 @@ function preload() {
   classifier = ml5.imageClassifier(modelURL + 'model.json');
 
   Spirit = loadImage('assets/cards/Sprite_Outline.png');
-  Event_Run = loadImage('assets/cards/Play_Outline.png');
+  Event_Play = loadImage('assets/cards/Play_Outline.png');
+  Event_Rock = loadImage('assets/cards/Rock_Outline.png');
   Event_Scissors = loadImage('assets/cards/Scissor_Outline.png');
+  Event_Paper = loadImage('assets/cards/Paper_Outline.png');
   Action = loadImage('assets/cards/Action_Outline.png');
   // Banana = loadImage('assets/cards/Banana.png');
   // Marker1 = loadImage('assets/cards/Marker1.png');
@@ -316,6 +327,14 @@ function play() {
   playFlag = !playFlag;
   frameNum = 0;
 }
+
+// function showScissors() {
+//   scissorsCount = scissorsCount + 1;
+//   if (scissorsCount == 24) {
+//     scissorsFlag = !scissorsFlag;
+//     showAnimationforScissors();
+//   }
+// }
 
 function showCode() {
   codeFlag = !codeFlag;

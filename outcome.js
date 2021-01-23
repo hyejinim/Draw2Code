@@ -1,7 +1,6 @@
 let frame = 0;
 let index = 0;
 let spirit;
-let codeBarHeight = 80;
 let cleanCode = false;
 
 // authoring
@@ -144,7 +143,7 @@ function drawCodingBlock() {
     cardH = 250;
     cardName = "Sprite";
   } else if (label == "Trigger_Run") {
-    card = Event_Run;
+    card = Event_Play;
     cardW = 300;
     cardH = 250;
     cardName = "Run";
@@ -153,7 +152,17 @@ function drawCodingBlock() {
     cardW = 300;
     cardH = 250;
     cardName = "Scissors";
-  }   else if (label == "Behavior") {
+  } else if (label == "Trigger_Rock") {
+    card = Event_Rock;
+    cardW = 300;
+    cardH = 250;
+    cardName = "Rock";
+  } else if (label == "Trigger_Paper") {
+    card = Event_Paper;
+    cardW = 300;
+    cardH = 250;
+    cardName = "Paper";
+  } else if (label == "Behavior") {
     card = Action;
     cardW = 340; 
     cardH = 250; 
@@ -174,7 +183,7 @@ function drawCodingBlock() {
     tint(255, 200); // modify alpha value
     image(card, windowW / 2, (windowH - codeBarHeight) / 2, cardW, cardH);
     tint(255, 255);
-      // text(cardName, windowW / 2, 30);
+      text(cardName, windowW / 2, 30);
   }
 }
 
@@ -204,24 +213,64 @@ function scanCard() {
       spr = drawing;
       sprite = {
         drawing: drawing,
-        events: [],
+        // events: [],
+        eventPlay: [],
+        eventScissors: [],
+        eventRock: [],
+        eventPaper: []
+        // play: [],
+        // scissors: []
       };
       sprites.push(sprite);
       spritesNum = sprites.length - 1;
-    } else if (label == "Trigger_Scissors" || label == "Trigger_Run") {
+    } else if (label == "Trigger_Scissors") {
+      currentEvent = "Scissors";
       event = {
-        type: label,
+        // type: label,
         frames: [] 
       };
-      sprites[spritesNum].events.push(event);
-      eventsNum = sprites[spritesNum].events.length - 1;
+      sprites[spritesNum].eventScissors = event;
+      // eventsNum = sprites[spritesNum].events.length - 1;
+    } else if (label == "Trigger_Rock") {
+      currentEvent = "Rock";
+      event = {
+        // type: label,
+        frames: [] 
+      };
+      sprites[spritesNum].eventRock = event;
+      // eventsNum = sprites[spritesNum].events.length - 1;
+    } else if (label == "Trigger_Paper") {
+      currentEvent = "Paper";
+      event = {
+        // type: label,
+        frames: [] 
+      };
+      sprites[spritesNum].eventPaper = event;
+      // eventsNum = sprites[spritesNum].events.length - 1;
+    } else if (label == "Trigger_Run") {
+      currentEvent = "Play";
+      event = {
+        frames: [] 
+      };
+      sprites[spritesNum].eventPlay = event;
+      // eventsNum = sprites[spritesNum].events.length - 1;
     } else if (label == "Behavior") {
       drawing = takeSnap(windowW / 2 - 130, (windowH - codeBarHeight) / 2 - 70, 220, 130);
 
       console.log('sprite: ', sx, sy, sw, sh);
       // create Frame objects
       frame = new Frame(sx, sy, sw, sh); // x, y, width, height
-      sprites[spritesNum].events[eventsNum].frames.push(frame);
+
+      if (currentEvent == "Play") {
+        sprites[spritesNum].eventPlay.frames.push(frame);
+      } else if (currentEvent == "Scissors") {
+        sprites[spritesNum].eventScissors.frames.push(frame);
+      } else if (currentEvent == "Rock") {
+        sprites[spritesNum].eventRock.frames.push(frame);
+      } else if (currentEvent == "Paper") {
+        sprites[spritesNum].eventPaper.frames.push(frame);
+      }
+  
     } else {
       drawing = '';
     }
@@ -254,11 +303,19 @@ function drawCode() {
       itemGap = itemW - 13;
       image(doodle, itemX + 6, itemY, 52, 52);
     } else if (item == "Trigger_Run") {
-      item = Event_Run;
+      item = Event_Play;
       itemW = 75;
       itemGap = itemW + 15;
     } else if (item == "Trigger_Scissors") {
       item = Event_Scissors;
+      itemW = 75;
+      itemGap = itemW + 15;
+    } else if (item == "Trigger_Rock") {
+      item = Event_Rock;
+      itemW = 75;
+      itemGap = itemW + 15;
+    } else if (item == "Trigger_Paper") {
+      item = Event_Paper;
       itemW = 75;
       itemGap = itemW + 15;
     } else if (item == "Behavior") {
@@ -285,35 +342,135 @@ function showAnimation() {
   // }
   if (playFlag) {
     console.log("play animation");
-    if (frameNum < sprites[spritesNum].events[eventsNum].frames.length) {
-      // if (sprites[spritesNum].events[].type == "Trigger_Run")
-      sprX = sprites[spritesNum].events[eventsNum].frames[frameNum].x;
-      sprY = sprites[spritesNum].events[eventsNum].frames[frameNum].y;
-      sprW = sprites[spritesNum].events[eventsNum].frames[frameNum].w;
-      sprH = sprites[spritesNum].events[eventsNum].frames[frameNum].w;
-      
-      image(spr, sprX, sprY, sprW, sprH);
-      if (frameCount % 10 == 0) { // update every # frames
-        sprX = sprites[spritesNum].events[eventsNum].frames[frameNum].x;
-        sprY = sprites[spritesNum].events[eventsNum].frames[frameNum].y;
-        sprW = sprites[spritesNum].events[eventsNum].frames[frameNum].w;
-        sprH = sprites[spritesNum].events[eventsNum].frames[frameNum].w;
-        frameNum = frameNum + 1;
+    // thisEvent = sprites[spritesNum].events[eventsNum]"Trigger_Run"
+
+    if (sprites[spritesNum].eventPlay.frames) {
+      if (frameNum < sprites[spritesNum].eventPlay.frames.length) {
+        sprX = sprites[spritesNum].eventPlay.frames[frameNum].x;
+        sprY = sprites[spritesNum].eventPlay.frames[frameNum].y;
+        sprW = sprites[spritesNum].eventPlay.frames[frameNum].w;
+        sprH = sprites[spritesNum].eventPlay.frames[frameNum].w;
+        
+        image(spr, sprX, sprY, sprW, sprH);
+        if (frameCount % 10 == 0) { // update every # frames
+          sprX = sprites[spritesNum].eventPlay.frames[frameNum].x;
+          sprY = sprites[spritesNum].eventPlay.frames[frameNum].y;
+          sprW = sprites[spritesNum].eventPlay.frames[frameNum].w;
+          sprH = sprites[spritesNum].eventPlay.frames[frameNum].w;
+          frameNum = frameNum + 1;
+        }
+      }  
+      if (frameNum == sprites[spritesNum].eventPlay.frames.length) {
+        playFlag = !playFlag;
       }
-    }  
-    if (frameNum == sprites[spritesNum].events[eventsNum].frames.length) {
-      playFlag = !playFlag;
     }
   } 
   
-  // if (label == "Rock") {
-  //   text("Rock", windowW / 2, 30);
-  // } else if (label == "Scissors") {
-  //   text("Scissors", windowW / 2, 30);
-  // } else if (label == "Paper") {
-  //   text("Paper", windowW / 2, 30);
-  // } else if (label == "None") {
-  //   text("None", windowW / 2, 30);
-  // } 
+  if (scissorsFlag) {
+    console.log("scissor animation");
+    if (frameNum < sprites[spritesNum].eventScissors.frames.length) {
+      sprX = sprites[spritesNum].eventScissors.frames[frameNum].x;
+      sprY = sprites[spritesNum].eventScissors.frames[frameNum].y;
+      sprW = sprites[spritesNum].eventScissors.frames[frameNum].w;
+      sprH = sprites[spritesNum].eventScissors.frames[frameNum].w;
+      
+      image(spr, sprX, sprY, sprW, sprH);
+      if (frameCount % 10 == 0) { // update every # frames
+        sprX = sprites[spritesNum].eventScissors.frames[frameNum].x;
+        sprY = sprites[spritesNum].eventScissors.frames[frameNum].y;
+        sprW = sprites[spritesNum].eventScissors.frames[frameNum].w;
+        sprH = sprites[spritesNum].eventScissors.frames[frameNum].w;
+        frameNum = frameNum + 1;
+      }
+    } 
+    if (frameNum == sprites[spritesNum].eventScissors.frames.length) {
+      scissorsFlag = !scissorsFlag;
+      scissorsCount = 0;
+      frameNum = 0;
+    }
+  }
+
+  if (rockFlag) {
+    console.log("rock animation");
+    if (frameNum < sprites[spritesNum].eventRock.frames.length) {
+      sprX = sprites[spritesNum].eventRock.frames[frameNum].x;
+      sprY = sprites[spritesNum].eventRock.frames[frameNum].y;
+      sprW = sprites[spritesNum].eventRock.frames[frameNum].w;
+      sprH = sprites[spritesNum].eventRock.frames[frameNum].w;
+      
+      image(spr, sprX, sprY, sprW, sprH);
+      if (frameCount % 10 == 0) { // update every # frames
+        sprX = sprites[spritesNum].eventRock.frames[frameNum].x;
+        sprY = sprites[spritesNum].eventRock.frames[frameNum].y;
+        sprW = sprites[spritesNum].eventRock.frames[frameNum].w;
+        sprH = sprites[spritesNum].eventRock.frames[frameNum].w;
+        frameNum = frameNum + 1;
+      }
+    } 
+    if (frameNum == sprites[spritesNum].eventRock.frames.length) {
+      rockFlag = !rockFlag;
+      rockCount = 0;
+      frameNum = 0;
+    }
+  }
+
+  if (paperFlag) {
+    console.log("paper animation");
+    if (frameNum < sprites[spritesNum].eventPaper.frames.length) {
+      sprX = sprites[spritesNum].eventPaper.frames[frameNum].x;
+      sprY = sprites[spritesNum].eventPaper.frames[frameNum].y;
+      sprW = sprites[spritesNum].eventPaper.frames[frameNum].w;
+      sprH = sprites[spritesNum].eventPaper.frames[frameNum].w;
+      
+      image(spr, sprX, sprY, sprW, sprH);
+      if (frameCount % 10 == 0) { // update every # frames
+        sprX = sprites[spritesNum].eventPaper.frames[frameNum].x;
+        sprY = sprites[spritesNum].eventPaper.frames[frameNum].y;
+        sprW = sprites[spritesNum].eventPaper.frames[frameNum].w;
+        sprH = sprites[spritesNum].eventPaper.frames[frameNum].w;
+        frameNum = frameNum + 1;
+      }
+    } 
+    if (frameNum == sprites[spritesNum].eventPaper.frames.length) {
+      paperFlag = !paperFlag;
+      paperCount = 0;
+      frameNum = 0;
+    }
+  }
+
+  if (label == "Rock") {
+    text("Rock", windowW / 2, 30);
+    if (sprites[spritesNum].eventRock.length != 0) {
+      rockCount = rockCount + 1;
+      console.log('rockCount: ', rockCount);
+
+      if (rockCount == 6) {
+        rockFlag = !rockFlag;
+      }
+    }
+  } else if (label == "Scissors") {
+    text("Scissors", windowW / 2, 30);
+    if (sprites[spritesNum].eventScissors.length != 0) {
+      scissorsCount = scissorsCount + 1;
+      console.log('scissorsCount: ', scissorsCount);
+
+      if (scissorsCount == 6) {
+        scissorsFlag = !scissorsFlag;
+      }
+    }
+  } else if (label == "Paper") {
+    text("Paper", windowW / 2, 30);
+    if (sprites[spritesNum].eventPaper.length != 0) {
+      PaperCount = PaperCount + 1;
+      console.log('paperCount: ', paperCount);
+
+      if (scissorsCount == 6) {
+        scissorsFlag = !scissorsFlag;
+      }
+    }
+  } else if (label == "None") {
+    text("None", windowW / 2, 30);
+  } 
+
   pop();
 }
