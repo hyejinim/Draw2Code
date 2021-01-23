@@ -43,7 +43,7 @@ function draw() {
     if (trackingData) { //if there is tracking data to look at, then...
       for (var i = 0; i < trackingData.length; i++) { //loop through each of the detected colors    
   
-        bx = trackingData[i].x + (windowW/2-190);
+        bx = trackingData[i].x + (windowW/2-230);
         by = trackingData[i].y + (windowH-codeBarHeight)/2-140;
         bw = trackingData[i].width;
         bh = trackingData[i].height;
@@ -183,7 +183,7 @@ function drawCodingBlock() {
     tint(255, 200); // modify alpha value
     image(card, windowW / 2, (windowH - codeBarHeight) / 2, cardW, cardH);
     tint(255, 255);
-      text(cardName, windowW / 2, 30);
+      // text(cardName, windowW / 2, 30);
   }
 }
 
