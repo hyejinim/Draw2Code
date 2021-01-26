@@ -152,17 +152,19 @@ function drawCodingBlock() {
     cardW = 300;
     cardH = 250;
     cardName = "Scissors";
-  } else if (label == "Trigger_Rock") {
-    card = Event_Rock;
-    cardW = 300;
-    cardH = 250;
-    cardName = "Rock";
-  } else if (label == "Trigger_Paper") {
-    card = Event_Paper;
-    cardW = 300;
-    cardH = 250;
-    cardName = "Paper";
-  } else if (label == "Behavior") {
+  } 
+  // else if (label == "Trigger_Rock") {
+  //   card = Event_Rock;
+  //   cardW = 300;
+  //   cardH = 250;
+  //   cardName = "Rock";
+  // } else if (label == "Trigger_Paper") {
+  //   card = Event_Paper;
+  //   cardW = 300;
+  //   cardH = 250;
+  //   cardName = "Paper";
+  // } 
+  else if (label == "Behavior") {
     card = Action;
     cardW = 340; 
     cardH = 250; 
@@ -216,8 +218,8 @@ function scanCard() {
         // events: [],
         eventPlay: [],
         eventScissors: [],
-        eventRock: [],
-        eventPaper: []
+        // eventRock: [],
+        // eventPaper: []
         // play: [],
         // scissors: []
       };
@@ -231,23 +233,25 @@ function scanCard() {
       };
       sprites[spritesNum].eventScissors = event;
       // eventsNum = sprites[spritesNum].events.length - 1;
-    } else if (label == "Trigger_Rock") {
-      currentEvent = "Rock";
-      event = {
-        // type: label,
-        frames: [] 
-      };
-      sprites[spritesNum].eventRock = event;
-      // eventsNum = sprites[spritesNum].events.length - 1;
-    } else if (label == "Trigger_Paper") {
-      currentEvent = "Paper";
-      event = {
-        // type: label,
-        frames: [] 
-      };
-      sprites[spritesNum].eventPaper = event;
-      // eventsNum = sprites[spritesNum].events.length - 1;
-    } else if (label == "Trigger_Run") {
+    } 
+    // else if (label == "Trigger_Rock") {
+    //   currentEvent = "Rock";
+    //   event = {
+    //     // type: label,
+    //     frames: [] 
+    //   };
+    //   sprites[spritesNum].eventRock = event;
+    //   // eventsNum = sprites[spritesNum].events.length - 1;
+    // } else if (label == "Trigger_Paper") {
+    //   currentEvent = "Paper";
+    //   event = {
+    //     // type: label,
+    //     frames: [] 
+    //   };
+    //   sprites[spritesNum].eventPaper = event;
+    //   // eventsNum = sprites[spritesNum].events.length - 1;
+    // } 
+    else if (label == "Trigger_Run") {
       currentEvent = "Play";
       event = {
         frames: [] 
@@ -265,11 +269,12 @@ function scanCard() {
         sprites[spritesNum].eventPlay.frames.push(frame);
       } else if (currentEvent == "Scissors") {
         sprites[spritesNum].eventScissors.frames.push(frame);
-      } else if (currentEvent == "Rock") {
-        sprites[spritesNum].eventRock.frames.push(frame);
-      } else if (currentEvent == "Paper") {
-        sprites[spritesNum].eventPaper.frames.push(frame);
-      }
+      } 
+      // else if (currentEvent == "Rock") {
+      //   sprites[spritesNum].eventRock.frames.push(frame);
+      // } else if (currentEvent == "Paper") {
+      //   sprites[spritesNum].eventPaper.frames.push(frame);
+      // }
   
     } else {
       drawing = '';
@@ -310,15 +315,17 @@ function drawCode() {
       item = Event_Scissors;
       itemW = 75;
       itemGap = itemW + 15;
-    } else if (item == "Trigger_Rock") {
-      item = Event_Rock;
-      itemW = 75;
-      itemGap = itemW + 15;
-    } else if (item == "Trigger_Paper") {
-      item = Event_Paper;
-      itemW = 75;
-      itemGap = itemW + 15;
-    } else if (item == "Behavior") {
+    } 
+    // else if (item == "Trigger_Rock") {
+    //   item = Event_Rock;
+    //   itemW = 75;
+    //   itemGap = itemW + 15;
+    // } else if (item == "Trigger_Paper") {
+    //   item = Event_Paper;
+    //   itemW = 75;
+    //   itemGap = itemW + 15;
+    // } 
+    else if (item == "Behavior") {
       item = Action;
       itemW = 120;
       itemGap = itemW - 8;
@@ -390,65 +397,79 @@ function showAnimation() {
     }
   }
 
-  if (rockFlag) {
-    console.log("rock animation");
-    if (frameNum < sprites[spritesNum].eventRock.frames.length) {
-      sprX = sprites[spritesNum].eventRock.frames[frameNum].x;
-      sprY = sprites[spritesNum].eventRock.frames[frameNum].y;
-      sprW = sprites[spritesNum].eventRock.frames[frameNum].w;
-      sprH = sprites[spritesNum].eventRock.frames[frameNum].w;
+  // if (rockFlag) {
+  //   console.log("rock animation");
+  //   if (frameNum < sprites[spritesNum].eventRock.frames.length) {
+  //     sprX = sprites[spritesNum].eventRock.frames[frameNum].x;
+  //     sprY = sprites[spritesNum].eventRock.frames[frameNum].y;
+  //     sprW = sprites[spritesNum].eventRock.frames[frameNum].w;
+  //     sprH = sprites[spritesNum].eventRock.frames[frameNum].w;
       
-      image(spr, sprX, sprY, sprW, sprH);
-      if (frameCount % 10 == 0) { // update every # frames
-        sprX = sprites[spritesNum].eventRock.frames[frameNum].x;
-        sprY = sprites[spritesNum].eventRock.frames[frameNum].y;
-        sprW = sprites[spritesNum].eventRock.frames[frameNum].w;
-        sprH = sprites[spritesNum].eventRock.frames[frameNum].w;
-        frameNum = frameNum + 1;
-      }
-    } 
-    if (frameNum == sprites[spritesNum].eventRock.frames.length) {
-      rockFlag = !rockFlag;
-      rockCount = 0;
-      frameNum = 0;
-    }
-  }
+  //     image(spr, sprX, sprY, sprW, sprH);
+  //     if (frameCount % 10 == 0) { // update every # frames
+  //       sprX = sprites[spritesNum].eventRock.frames[frameNum].x;
+  //       sprY = sprites[spritesNum].eventRock.frames[frameNum].y;
+  //       sprW = sprites[spritesNum].eventRock.frames[frameNum].w;
+  //       sprH = sprites[spritesNum].eventRock.frames[frameNum].w;
+  //       frameNum = frameNum + 1;
+  //     }
+  //   } 
+  //   if (frameNum == sprites[spritesNum].eventRock.frames.length) {
+  //     rockFlag = !rockFlag;
+  //     rockCount = 0;
+  //     frameNum = 0;
+  //   }
+  // }
 
-  if (paperFlag) {
-    console.log("paper animation");
-    if (frameNum < sprites[spritesNum].eventPaper.frames.length) {
-      sprX = sprites[spritesNum].eventPaper.frames[frameNum].x;
-      sprY = sprites[spritesNum].eventPaper.frames[frameNum].y;
-      sprW = sprites[spritesNum].eventPaper.frames[frameNum].w;
-      sprH = sprites[spritesNum].eventPaper.frames[frameNum].w;
+  // if (paperFlag) {
+  //   console.log("paper animation");
+  //   if (frameNum < sprites[spritesNum].eventPaper.frames.length) {
+  //     sprX = sprites[spritesNum].eventPaper.frames[frameNum].x;
+  //     sprY = sprites[spritesNum].eventPaper.frames[frameNum].y;
+  //     sprW = sprites[spritesNum].eventPaper.frames[frameNum].w;
+  //     sprH = sprites[spritesNum].eventPaper.frames[frameNum].w;
       
-      image(spr, sprX, sprY, sprW, sprH);
-      if (frameCount % 10 == 0) { // update every # frames
-        sprX = sprites[spritesNum].eventPaper.frames[frameNum].x;
-        sprY = sprites[spritesNum].eventPaper.frames[frameNum].y;
-        sprW = sprites[spritesNum].eventPaper.frames[frameNum].w;
-        sprH = sprites[spritesNum].eventPaper.frames[frameNum].w;
-        frameNum = frameNum + 1;
-      }
-    } 
-    if (frameNum == sprites[spritesNum].eventPaper.frames.length) {
-      paperFlag = !paperFlag;
-      paperCount = 0;
-      frameNum = 0;
-    }
-  }
+  //     image(spr, sprX, sprY, sprW, sprH);
+  //     if (frameCount % 10 == 0) { // update every # frames
+  //       sprX = sprites[spritesNum].eventPaper.frames[frameNum].x;
+  //       sprY = sprites[spritesNum].eventPaper.frames[frameNum].y;
+  //       sprW = sprites[spritesNum].eventPaper.frames[frameNum].w;
+  //       sprH = sprites[spritesNum].eventPaper.frames[frameNum].w;
+  //       frameNum = frameNum + 1;
+  //     }
+  //   } 
+  //   if (frameNum == sprites[spritesNum].eventPaper.frames.length) {
+  //     paperFlag = !paperFlag;
+  //     paperCount = 0;
+  //     frameNum = 0;
+  //   }
+  // }
 
-  if (label == "Rock") {
-    // text("Rock", windowW / 2, 30);
-    if (sprites[spritesNum].eventRock.length != 0) {
-      rockCount = rockCount + 1;
-      console.log('rockCount: ', rockCount);
+  // if (label == "Rock") {
+  //   // text("Rock", windowW / 2, 30);
+  //   if (sprites[spritesNum].eventRock.length != 0) {
+  //     rockCount = rockCount + 1;
+  //     console.log('rockCount: ', rockCount);
 
-      if (rockCount == 6) {
-        rockFlag = !rockFlag;
-      }
-    }
-  } else if (label == "Scissors") {
+  //     if (rockCount == 6) {
+  //       rockFlag = !rockFlag;
+  //     }
+  //   }
+  // } else if (label == "Paper") {
+  //   // text("Paper", windowW / 2, 30);
+  //   if (sprites[spritesNum].eventPaper.length != 0) {
+  //     PaperCount = PaperCount + 1;
+  //     console.log('paperCount: ', paperCount);
+
+  //     if (scissorsCount == 6) {
+  //       scissorsFlag = !scissorsFlag;
+  //     }
+  //   }
+  // } else if (label == "None") {
+  //   // text("None", windowW / 2, 30);
+  // } 
+
+  if (label == "Scissors") {
     // text("Scissors", windowW / 2, 30);
     if (sprites[spritesNum].eventScissors.length != 0) {
       scissorsCount = scissorsCount + 1;
@@ -458,18 +479,6 @@ function showAnimation() {
         scissorsFlag = !scissorsFlag;
       }
     }
-  } else if (label == "Paper") {
-    // text("Paper", windowW / 2, 30);
-    if (sprites[spritesNum].eventPaper.length != 0) {
-      PaperCount = PaperCount + 1;
-      console.log('paperCount: ', paperCount);
-
-      if (scissorsCount == 6) {
-        scissorsFlag = !scissorsFlag;
-      }
-    }
-  } else if (label == "None") {
-    // text("None", windowW / 2, 30);
   } 
 
   pop();
