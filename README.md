@@ -1,6 +1,6 @@
 # Draw2Code
 
-Draw2Code is a paper-based computational kit for young children age 5 and older to create interactive AR animation. You can transform your physical form of a drawing to a virtual sprite that moves across the screen by drawing, coloring, and manipulating paper coding blocks. 
+Draw2Code is a paper-based computational kit for young children aged 5 and older to create interactive AR animation. You can transform your physical form of a drawing to a virtual sprite that moves across the screen by drawing, coloring, and manipulating paper coding blocks. 
 
 Link to the program: [Draw2Code](http://hyejinim.github.io/draw2code)
 - It only works on Safari, in iPhone
