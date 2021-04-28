@@ -6,6 +6,6 @@ Draw2Code is a paper-based computational kit for young children aged 5 and older
 
 - Print and cut out the [coding blocks](https://docs.google.com/presentation/d/1ElkHP1LewVR8UKVX3hVORmDlwr0yeSNmIrRBa_yJFLg/edit?usp=sharing)
   - If you don't have a printer, you can still try it with virtual coding blocks on the [Miro Board](https://miro.com/app/board/o9J_ko0adOg=/)
-- Open the [Draw2Code application](http://hyejinim.github.io/draw2code) (It only works in Safari on iPhone)
+- Open the [Draw2Code application](http://hyejinim.github.io/draw2code) on your mobile device (It only works in Safari on iPhone).
 
   
