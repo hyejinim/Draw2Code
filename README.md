@@ -15,5 +15,5 @@ Published in IDC 2021, created by Hyejin Im and Chris Rogers
 
 ## How It Works
 * [Tpyes of Coding Blocks](https://github.com/hyejinim/draw2code/main/codingblock-types.png?raw=true)
-!(assets/codingblock-types.png)
+!(assets/images/codingblock-types.png)
 <!--   - Don't you have a printer? You can try it with virtual coding blocks on the [Miro Board](https://miro.com/app/board/o9J_ko0adOg=/) -->
