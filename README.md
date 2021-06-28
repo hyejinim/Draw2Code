@@ -15,7 +15,7 @@ Published in IDC 2021, created by Hyejin Im and Chris Rogers
 
 ## How It Works
 * [Tutorial video](https://youtu.be/t7gDyvwuobI)
-* Coding & Interaction Workflow
+* Coding & interaction workflow
 ![](/assets/images/workflow.png)
 * Types of coding blocks
 ![](/assets/images/codingblock-types.png)
