@@ -1,5 +1,6 @@
 # Draw2Code
-
+![](/assets/images/coding-blocks.png)
+![](/assets/images/teaser.png)
 Draw2Code is a paper-based computational kit for young children ages five and older to create interactive AR animations. You can transform your physical form of a drawing to a virtual sprite that moves across the screen by drawing, coloring, and manipulating paper coding blocks. You can learn basic computational thinking concepts and practices through the coding process. 
 
 Published in IDC 2021, created by Hyejin Im and Chris Rogers
