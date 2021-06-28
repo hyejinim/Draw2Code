@@ -15,6 +15,8 @@ Published in IDC 2021, created by Hyejin Im and Chris Rogers
 
 ## How It Works
 * [Tutorial video](https://youtu.be/t7gDyvwuobI)
+* Coding & Interaction Workflow
+![](/assets/images/workflow.png)
 * Types of coding blocks
 ![](/assets/images/codingblock-types.png)
 <!--   - Don't you have a printer? You can try it with virtual coding blocks on the [Miro Board](https://miro.com/app/board/o9J_ko0adOg=/) -->
