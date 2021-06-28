@@ -13,7 +13,6 @@ Published in IDC 2021, created by Hyejin Im and Chris Rogers
 * Print and cut out the [coding blocks](https://docs.google.com/presentation/d/1ElkHP1LewVR8UKVX3hVORmDlwr0yeSNmIrRBa_yJFLg/edit?usp=sharing)
 * Print the [design template](https://docs.google.com/presentation/d/1eE4FdLuwtxr7QLaxosLTFihs6-ecEckHZo9FNS3ia4o/edit?usp=sharing) for kids if necessary
 * Open the [Draw2Code application](http://hyejinim.github.io/draw2code) (http://hyejinim.github.io/draw2code) on your mobile device (It works in **Safari** in **landscape** mode on iPhone)
-
 ![](/assets/images/qrcode.png)
 
 ## How It Works
