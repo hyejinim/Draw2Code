@@ -5,7 +5,7 @@ Draw2Code is a paper-based computational kit for young children ages five and ol
 Published in IDC 2021, created by Hyejin Im and Chris Rogers
 
 ## Publications
-* [Work-In Progress Paper](https://dl.acm.org/doi/10.1145/3459990.3465189)
+* [Work-In Progress paper](https://dl.acm.org/doi/10.1145/3459990.3465189)
 * [Thesis](https://drive.google.com/file/d/19VSQYhYBQMyJ6bVujrVg8ovS3AOEefCk/view?usp=sharing)
 
 ## Getting Started
@@ -14,5 +14,6 @@ Published in IDC 2021, created by Hyejin Im and Chris Rogers
 * Open the [Draw2Code application](http://hyejinim.github.io/draw2code) on your mobile device (It only works in Safari on iPhone)
 
 ## How It Works
-![](/assets/images/codingblock-types.png)
+* [Tutorial video](https://youtu.be/t7gDyvwuobI)
+* ![Types of coding blocks](/assets/images/codingblock-types.png)
 <!--   - Don't you have a printer? You can try it with virtual coding blocks on the [Miro Board](https://miro.com/app/board/o9J_ko0adOg=/) -->
